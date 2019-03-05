@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-
 class Logo extends Component {
     render() {
-        return(
+        return (
+            //logo of the company//
 
             <p>some logo</p>
         )
