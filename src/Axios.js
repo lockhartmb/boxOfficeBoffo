@@ -6,20 +6,16 @@ const apiKey = '9ce0982a9b86c5a78ad6ab14e214b652'
 
 
 class Axios extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);	
 		this.state = {
 			results: [],
 		}
 	}
-
-
-
+	
 	componentDidMount() {
-
-
-		// console.log("did mount");
-		const fetchMovies = function () {
+		const {currentYear} = this.props
+		const fetchMovies = () => {
 
 			axios({
 				method: 'GET',
@@ -34,8 +30,8 @@ class Axios extends Component {
 						api_key: apiKey,
 						format: 'json',
 						language: 'en-US',
-						'primary_release_date.gte': '2015-05-01',
-						'primary_release_date.lte': '2015-09-04',
+						'primary_release_date.gte': `${currentYear}-05-01`,
+						'primary_release_date.lte': `${currentYear}-09-04`,
 						region: 'US',
 						page: 1,
 						sort_by: 'revenue.desc'
@@ -47,14 +43,16 @@ class Axios extends Component {
 				}
 			}).then(response => {
 				const movies = response.data.results;
+				// console.log(movies)
 				this.setState({
 					results: movies
 				})
-
-				console.log(movies)
 			})
 		}
+		fetchMovies()
+		console.log(this.state.results)
 	}
+	
 	render() {
 		return (
 			<Fragment></Fragment>

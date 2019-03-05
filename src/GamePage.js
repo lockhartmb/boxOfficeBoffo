@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Logo from './Logo';
+import Axios from './Axios';
 
 class GamePage extends Component {
     constructor() {
         super();
         this.state = {
-
+            year: 2019,
+            results: []
         }
     }
 
@@ -14,7 +16,7 @@ class GamePage extends Component {
             <section>
                 <h1>Box Office Boffo</h1>
                 <select><option></option></select>
-                {/**/}
+                <Axios currentYear={this.state.year}/>
 
             </section>
         )
