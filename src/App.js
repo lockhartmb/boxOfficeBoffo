@@ -5,13 +5,13 @@ import Layout from './Layout.js';
 class App extends Component {
   constructor() {
     super();
-    this.state={
+    this.state = {
 
     }
   }
   render() {
     return (
-      <div className="App">        
+      <div className="App">
         <Layout />
       </div>
     );
