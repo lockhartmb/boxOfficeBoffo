@@ -9,7 +9,7 @@ class Axios extends Component {
 	constructor(props) {
 		super(props);	
 		this.state = {
-			results: []
+			// results: []
 		}
 	}
 	
@@ -45,12 +45,8 @@ class Axios extends Component {
 				// .then() and this.setState() will wait until the axios call is done because it has "await" on it
 			}).then(response => {
 				const movies = response.data.results;
-				// console.log(movies)
-				this.setState({
-					results: movies
-				})
+				this.props.getResults(movies);
 			})
-		console.log(this.state.results)
 	}
 	
 	// this is just so that the return is not empty

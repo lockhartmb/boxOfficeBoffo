@@ -9,7 +9,15 @@ class GamePage extends Component {
         super();
         this.state = {
             year: 2019,
+            results: [],
         }
+    }
+
+    getResults = (movieResult) => {
+        this.setState({
+            results: movieResult
+        })
+        console.log(this.state.results);
     }
 
     render() {
@@ -18,7 +26,23 @@ class GamePage extends Component {
                 <h1>Box Office Boffo</h1>
                 <select><option></option></select>
                 {/* We pass the state of year to the Axios component to modify the search parameters */}
-                <Axios currentYear={this.state.year}/>
+                <Axios 
+                currentYear={this.state.year}
+                getResults={this.getResults}
+                />
+                <div className="movieCatalogue">
+                    {this.state.results.map(movie => {
+                        return (
+                            <div key={movie.id} className="movieCatalogue__movie">
+                                {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
+                                
+                                    <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                
+                            </div>
+                        )
+                    })
+                    }
+                </div>
             </section>
         )
     }
