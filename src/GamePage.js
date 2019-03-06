@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Logo from './Logo';
 import Axios from './Axios';
 
 
@@ -17,15 +16,16 @@ class GamePage extends Component {
         this.setState({
             results: movieResult
         })
-        // console.log(this.state.results);
+        console.log(this.state.results);
     }
 
+    // handleYear is always looking for the chosen year, so if a new year is chosen in the dropdown, GamePage will know about it (it's state is updated)
     handleYear = (event) => {
         event.preventDefault();
+        console.log(event, 'hi there')
         this.setState({
             year: event.target.value
         })
-
     }
 
     render() {
@@ -51,7 +51,7 @@ class GamePage extends Component {
                 <Axios
                     currentYear={this.state.year}
                     getResults={this.getResults}
-                    handleYear={this.handleYear}
+                    // handleYear={this.handleYear}
                 />
 
                 <div className="movieCatalogue">
