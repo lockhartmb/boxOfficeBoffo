@@ -24,6 +24,7 @@ class Layout extends Component {
         return(
             <section>
                 <Logo />
+                {/* if the clickToStart state is "truthy", then user will move to GamePage, if not, stays on LandingPage */}
                 {this.state.clickToStart ? <GamePage /> : <LandingPage handleStart={this.handleStart}/> }
             </section>
 

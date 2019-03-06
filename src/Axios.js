@@ -4,15 +4,17 @@ import Qs from 'qs';
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
 const apiKey = '9ce0982a9b86c5a78ad6ab14e214b652'
 
-
+// Axios component has a state of results that can be passed back up to GamePage as needed
 class Axios extends Component {
 	constructor(props) {
 		super(props);	
 		this.state = {
-			results: [],
+			results: []
 		}
 	}
 	
+	// used props to get the year from GamePage and saved as variable. Variable is used in search parameters to make that dynamic
+	// componentDidMount is an async function
 	async componentDidMount() {
 		const {currentYear} = this.props
 
@@ -40,6 +42,7 @@ class Axios extends Component {
 					},
 					xmlToJson: false,
 				}
+				// .then() and this.setState() will wait until the axios call is done because it has "await" on it
 			}).then(response => {
 				const movies = response.data.results;
 				// console.log(movies)
@@ -50,6 +53,7 @@ class Axios extends Component {
 		console.log(this.state.results)
 	}
 	
+	// this is just so that the return is not empty
 	render() {
 		return (
 			<Fragment></Fragment>
