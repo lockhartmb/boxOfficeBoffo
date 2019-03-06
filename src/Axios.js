@@ -13,11 +13,10 @@ class Axios extends Component {
 		}
 	}
 	
-	componentDidMount() {
+	async componentDidMount() {
 		const {currentYear} = this.props
-		const fetchMovies = () => {
 
-			axios({
+			await axios({
 				method: 'GET',
 				url: 'http://proxy.hackeryou.com',
 				dataResponse: 'json',
@@ -48,8 +47,6 @@ class Axios extends Component {
 					results: movies
 				})
 			})
-		}
-		fetchMovies()
 		console.log(this.state.results)
 	}
 	
