@@ -32,3 +32,4 @@ class App extends Component {
 }
 
 export default App;
+// render(<SortableComponent />, document.getElementById('root'));

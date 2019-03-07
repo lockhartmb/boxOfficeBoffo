@@ -112,13 +112,13 @@ class GamePage extends Component {
                     {this.state.results.filter(movie => {
                         return movie.poster_path !== null;
                     }).map(movie => {
-                        const movieId = movie.id
+                        const movieTitle = movie.title
                         return (
                             <div key={movie.id} className="movieCatalogueMovie">
                                 {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                 <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                <button key={movie.id} addToList={movieId}>+</button>
+                                <button key={movie.id} addToList={movieTitle}>+</button>
 
                             </div>
                         )
