@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Qs from 'qs'
+import Qs from 'qs';
+import firebase from './firebase'
+
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
 const apiKey = '9ce0982a9b86c5a78ad6ab14e214b652'
@@ -72,10 +74,14 @@ class GamePage extends Component {
     // handleYear is always looking for the chosen year, so if a new year is chosen in the dropdown, GamePage will know about it (it's state is updated)
     handleYear = (event) => {
         event.preventDefault();
-        console.log(event, 'hi there')
+        const dbRef = firebase.database().ref();
+        const test = "testingg firebase"
+        dbRef.push(test)
+
         this.setState({
             year: event.target.value
         })
+
     }
 
     render() {
@@ -83,7 +89,7 @@ class GamePage extends Component {
             <section>
                 <h1>Box Office Boffo</h1>
                 <select onChange={this.handleYear}>
-                    <option value="2019" >2019</option>
+                    <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
                     <option value="2016">2016</option>
