@@ -1,0 +1,17 @@
+.movieCatalogueMovie {
+    width: 25%;
+    float: left;
+    height: 50vh;
+    position: relative;
+}
+
+.movieCatalogueMovie button {
+    border: none;
+    border-radius: 50%;
+    background-color: green;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+

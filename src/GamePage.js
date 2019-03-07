@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
-import firebase from './firebase'
+import firebase from './firebase';
+import './GamePage.css';
+import './Global.css';
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -55,7 +57,8 @@ class GamePage extends Component {
                     'primary_release_date.lte': `${year}-09-04`,
                     region: 'US',
                     page: 1,
-                    sort_by: 'revenue.desc'
+                    sort_by: 'revenue.desc',
+                    sort_by: 'popularity.desc'
                 },
                 proxyHeaders: {
                     'some_header': 'lfkjg'
@@ -105,13 +108,16 @@ class GamePage extends Component {
                 {/* We pass the state of year to the Axios component to modify the search parameters */}
 
 
-                <div className="movieCatalogue">
-                    {this.state.results.map(movie => {
+                <div className="movieCatalogue clearfix">
+                    {this.state.results.filter(movie => {
+                        return movie.poster_path !== null;
+                    }).map(movie => {
                         return (
-                            <div key={movie.id} className="movieCatalogue__movie">
+                            <div key={movie.id} className="movieCatalogueMovie">
                                 {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                 <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                <button>+</button>
 
                             </div>
                         )

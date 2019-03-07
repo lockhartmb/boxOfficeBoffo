@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Layout from './Layout.js';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import LandingPage from './LandingPage.js';
+import Logo from './Logo.js';
+import GamePage from './GamePage.js';
+
 
 class App extends Component {
   constructor() {
@@ -9,12 +13,19 @@ class App extends Component {
 
     }
   }
+
   render() {
     return (
-      <div className="App">
-        <Layout />
-      </div>
-    );
+      <Router>
+        <div className="App">
+          <Logo />
+          {/*url path to go to the gamepage*/}
+          <Route exact path='/' component={LandingPage} />
+          <Route path='/gamepage' component={GamePage} />
+        </div>
+      </Router>
+
+    )
   }
 }
 
