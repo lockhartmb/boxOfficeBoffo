@@ -1,25 +1,75 @@
 import React, { Component } from 'react';
-import Axios from './Axios';
+import axios from 'axios';
+import Qs from 'qs';
 import firebase from './firebase'
 
 
+const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
+const apiKey = '9ce0982a9b86c5a78ad6ab14e214b652'
 
 // GamePage component has a state of year (which is 2019 to start)
 class GamePage extends Component {
     constructor() {
         super();
         this.state = {
-            year: 2019,
+            year: "2019",
             results: []
         }
     }
+    // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
+    // used props to get the year from GamePage and saved as variable. Variable is used in search parameters to make that dynamic
 
-    getResults = (movieResult) => {
-        this.setState({
-            results: movieResult
-        })
-        console.log(this.state.results);
+
+    // when component mounts, it will fetchData which is with the year 2019 as default
+    componentDidMount() {
+        this.fetchData();
+
     }
+
+    // if the component updates (ie, if the currentYear changes), then it will fetchData again
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.year !== prevState.year) {
+            /*  console.log('year', this.state.year, 'prev', prevProps.year, prevState.year) */
+            this.fetchData();
+        }
+
+    }
+    fetchData = async () => {
+        let { year } = this.state;
+        console.log('fetchData')
+
+        await axios({
+            method: 'GET',
+            url: 'http://proxy.hackeryou.com',
+            dataResponse: 'json',
+            paramsSerializer: function (params) {
+                return Qs.stringify(params, { arrayFormat: 'brackets' })
+            },
+            params: {
+                reqUrl: apiUrl,
+                params: {
+                    api_key: apiKey,
+                    format: 'json',
+                    language: 'en-US',
+                    'primary_release_date.gte': `${year}-05-01`,
+                    'primary_release_date.lte': `${year}-09-04`,
+                    region: 'US',
+                    page: 1,
+                    sort_by: 'revenue.desc'
+                },
+                proxyHeaders: {
+                    'some_header': 'lfkjg'
+                },
+                xmlToJson: false,
+            }
+            // .then() and this.setState() will wait until the axios call is done because it has "await" on it
+        }).then(response => {
+            const results = response.data.results;
+            console.log(response)
+            this.setState({ results });
+        })
+    }
+
 
     // handleYear is always looking for the chosen year, so if a new year is chosen in the dropdown, GamePage will know about it (it's state is updated)
     handleYear = (event) => {
@@ -54,11 +104,6 @@ class GamePage extends Component {
                 </select>
                 {/* We pass the state of year to the Axios component to modify the search parameters */}
 
-                <Axios
-                    currentYear={this.state.year}
-                    getResults={this.getResults}
-                    // handleYear={this.handleYear}
-                />
 
                 <div className="movieCatalogue">
                     {this.state.results.map(movie => {
@@ -76,8 +121,8 @@ class GamePage extends Component {
             </section>
         )
     }
-}
 
+}
 export default GamePage;
 //user click on a movie to add to his list
 //find a way to limit to 10 movies choices for each list
