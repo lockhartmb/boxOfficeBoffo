@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
-import Logo from './Logo.js';
 import GamePage from './GamePage.js';
 import CurrentList from './CurrentList.js';
 
@@ -20,7 +19,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Logo />
           {/*url path to go to the gamepage*/}
           <Route exact path='/' component={LandingPage} />
           <Route path='/gamepage' component={GamePage} />

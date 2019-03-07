@@ -7,7 +7,6 @@ import {
 } from 'react-sortable-hoc';
 
 const SortableItem = SortableElement(({ value }) => <li>{value}</li>);
-
 const SortableList = SortableContainer(({ items }) => {
 	return (
 		<ul>
