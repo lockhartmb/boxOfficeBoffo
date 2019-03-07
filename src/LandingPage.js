@@ -10,19 +10,13 @@ class LandingPage extends Component {
         }
     }
 
-
-
     render() {
         return (
             <section>
-
                 <h1>Box Office Boffo</h1>
                 <p>Some description of the app</p>
                 {/*link to the gamepage*/}
                 <Link to="gamepage">Click to Start</Link>
-
-
-
             </section>
         )
     }
