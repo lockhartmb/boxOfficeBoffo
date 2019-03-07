@@ -7,6 +7,7 @@ import GamePage from './GamePage.js';
 import CurrentList from './CurrentList.js';
 
 
+
 class App extends Component {
   constructor() {
     super();
@@ -32,3 +33,4 @@ class App extends Component {
 }
 
 export default App;
+// render(<SortableComponent />, document.getElementById('root'));
