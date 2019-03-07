@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import Logo from './Logo.js';
 import GamePage from './GamePage.js';
+import CurrentList from './CurrentList.js';
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
           {/*url path to go to the gamepage*/}
           <Route exact path='/' component={LandingPage} />
           <Route path='/gamepage' component={GamePage} />
+          <Route path='/gamepage' component={CurrentList} />
         </div>
       </Router>
 

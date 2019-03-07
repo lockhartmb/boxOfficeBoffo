@@ -15,7 +15,8 @@ class GamePage extends Component {
         super();
         this.state = {
             year: "2019",
-            results: []
+            results: [],
+            movieName: ''
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -87,6 +88,14 @@ class GamePage extends Component {
 
     }
 
+    handleCurrentMovie = (event) => {
+        event.preventDefault();
+        console.log(event.target.value);
+        this.setState({
+            movieName: event.target.value
+        })
+    }
+
     render() {
         return (
             <section>
@@ -112,12 +121,13 @@ class GamePage extends Component {
                     {this.state.results.filter(movie => {
                         return movie.poster_path !== null;
                     }).map(movie => {
+                        const movieName = this.state.movieName;
                         return (
                             <div key={movie.id} className="movieCatalogueMovie">
                                 {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                 <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                <button>+</button>
+                                <button value={movie.title} onClick={this.handleCurrentMovie} giveMovieTitle={movieName}>+</button>
 
                             </div>
                         )
