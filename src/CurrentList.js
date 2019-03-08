@@ -8,7 +8,7 @@ import {
 	arrayMove,
 } from 'react-sortable-hoc';
 
-
+// we using this library (react-sortable-hoc) to allows the user sort the list, the code for SortableList and SortableItem came from https://github.com/clauderic/react-sortable-hoc
 class CurrentList extends Component {
 	constructor() {
 		super();
@@ -16,17 +16,15 @@ class CurrentList extends Component {
 			items: []
 		};
 	}
-	
+
 	onSortEnd = ({ oldIndex, newIndex }) => {
 		this.setState(({ items }) => ({
 			items: arrayMove(items, oldIndex, newIndex),
 		}));
 	};
-
+	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
 	componentDidUpdate(prevProps) {
-		console.log(prevProps, this.props);
 		if (prevProps.chosenMovies.length !== this.props.chosenMovies.length) {
-			// console.log(`they're different`);
 			this.setState({
 				items: this.props.chosenMovies
 			})
@@ -58,48 +56,3 @@ export default CurrentList;
 
 
 
-// import React, { Component } from 'react';
-// import { render } from 'react-dom';
-// import {
-// 	SortableContainer,
-// 	SortableElement,
-// 	arrayMove,
-// } from 'react-sortable-hoc';
-
-// // const { getMovieTitle } = this.props;
-
-// const SortableItem = SortableElement( ({ getMovieTitle }) => {
-// 	return <li>{getMovieTitle}</li>;
-// });
-
-// const SortableList = SortableContainer(({ movies }) => {
-// 	return (
-// 		<ul>
-// 			{movies.map((value, index) => (
-// 				<SortableItem key={`item-${index}`} index={index} value={value} />
-// 			))}
-// 		</ul>
-// 	);
-// });
-
-// class SortableComponent extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.state = {
-// 			movies: props.getMovieTitle,
-// 			// items: ['movie'],
-// 		};
-// 	}
-
-// 	onSortEnd = ({ oldIndex, newIndex }) => {
-// 		this.setState(({ items }) => ({
-// 			movies: arrayMove(items, oldIndex, newIndex),
-// 		}));
-// 	};
-// 	render() {
-// 		return <SortableList movies={this.state.movies} onSortEnd={this.onSortEnd} />;
-// 	}
-// }
-
-// render(<SortableComponent />, document.getElementById('root'));
-// export default SortableComponent;

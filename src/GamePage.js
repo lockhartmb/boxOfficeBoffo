@@ -91,9 +91,11 @@ class GamePage extends Component {
     handleCurrentMovie = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
+        // we get this informations from the click and set the state of that clicked movie
         await this.setState({
             clickedMovie: event.target.value
         })
+        //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
         const newMovieArray = [...this.state.chosenMovies];
         newMovieArray.push(this.state.clickedMovie);
         this.setState({
@@ -143,7 +145,7 @@ class GamePage extends Component {
                     })
                     }
                 </div>
-
+                {/* we give the chosenMovies to CurrentList Component as a props */}
                 <CurrentList chosenMovies={this.state.chosenMovies} />
 
             </section>
