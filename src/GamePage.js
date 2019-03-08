@@ -4,6 +4,7 @@ import Qs from 'qs';
 import firebase from './firebase';
 import './GamePage.css';
 import './Global.css';
+import CurrentList from './CurrentList.js';
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -16,7 +17,8 @@ class GamePage extends Component {
         this.state = {
             year: "2019",
             results: [],
-            movieName: ''
+            clickedMovie: '',
+            chosenMovies: []
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -26,7 +28,6 @@ class GamePage extends Component {
     // when component mounts, it will fetchData which is with the year 2019 as default
     componentDidMount() {
         this.fetchData();
-
     }
 
     // if the component updates (ie, if the currentYear changes), then it will fetchData again
@@ -35,8 +36,8 @@ class GamePage extends Component {
             /*  console.log('year', this.state.year, 'prev', prevProps.year, prevState.year) */
             this.fetchData();
         }
-
     }
+
     fetchData = async () => {
         let { year } = this.state;
         console.log('fetchData')
@@ -85,15 +86,23 @@ class GamePage extends Component {
         this.setState({
             year: event.target.value
         })
-
     }
 
-    handleCurrentMovie = (event) => {
+    handleCurrentMovie = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
-        this.setState({
-            movieName: event.target.value
+        await this.setState({
+            clickedMovie: event.target.value
         })
+        const newMovieArray = [...this.state.chosenMovies];
+        newMovieArray.push(this.state.clickedMovie);
+        this.setState({
+            chosenMovies: newMovieArray
+        })
+        // console.log(this.state.chosenMovies);
+
+
+        // this.state.chosenMovies.push(this.state.clickedMovie);
     }
 
     render() {
@@ -127,13 +136,16 @@ class GamePage extends Component {
                                 {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                 <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                <button value={movie.title} onClick={this.handleCurrentMovie} giveMovieTitle={movieName}>+</button>
+                                <button value={movie.title} onClick={this.handleCurrentMovie}>+</button>
 
                             </div>
                         )
                     })
                     }
                 </div>
+
+                <CurrentList chosenMovies={this.state.chosenMovies} />
+
             </section>
         )
     }

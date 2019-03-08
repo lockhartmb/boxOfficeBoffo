@@ -24,7 +24,7 @@ class App extends Component {
           <Route exact path='/' component={LandingPage} />
           <div className="clearfix">
             <Route path='/gamepage' component={GamePage} />
-            <Route path='/gamepage' component={CurrentList} />
+            {/* <Route path='/gamepage' component={CurrentList} /> */}
           </div>
         </div>
       </Router>
