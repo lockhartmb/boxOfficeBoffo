@@ -1,8 +1,19 @@
+.movieCatalogue {
+    width: 90%;
+    height: 90%;
+    overflow: scroll;
+    margin-left: 5%;
+}
+
+
 .movieCatalogueMovie {
     width: 25%;
     float: left;
-    height: 50vh;
+    height: 75%;
     position: relative;
+    object-fit: fill;
+    overflow: hidden;
+    margin-bottom: 2%;
 }
 
 .movieCatalogueMovie button {
@@ -14,4 +25,15 @@
     top: 0;
     right: 0;
 }
+
+.gamePage {
+    width: 75%;
+    float: left;
+    border-top: 100px solid #58728d;
+    border-bottom: 100px solid #58728d;
+    height: 100vh;
+}
+
+
+
 

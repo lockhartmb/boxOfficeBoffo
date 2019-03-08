@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import "./CurrentList.css";
+import "./Global.css";
 import {
 	SortableContainer,
 	SortableElement,
@@ -9,7 +11,7 @@ import {
 const SortableItem = SortableElement(({ value }) => <li>{value}</li>);
 const SortableList = SortableContainer(({ items }) => {
 	return (
-		<ul>
+		<ul className="currentList">
 			{items.map((value, index) => (
 				<SortableItem key={`item-${index}`} index={index} value={value} />
 			))}

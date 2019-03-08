@@ -98,7 +98,7 @@ class GamePage extends Component {
 
     render() {
         return (
-            <section>
+            <section className="gamePage">
                 <h1>Box Office Boffo</h1>
                 <select onChange={this.handleYear}>
                     <option value="2019">2019</option>
@@ -126,7 +126,7 @@ class GamePage extends Component {
                             <div key={movie.id} className="movieCatalogueMovie">
                                 {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
-                                <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
                                 <button value={movie.title} onClick={this.handleCurrentMovie} giveMovieTitle={movieName}>+</button>
 
                             </div>

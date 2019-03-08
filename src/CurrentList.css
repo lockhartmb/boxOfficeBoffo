@@ -1,0 +1,7 @@
+.currentList {
+    width: 25%;
+    float: left;
+    border-top: 100px solid #58728d;
+    border-bottom: 100px solid #58728d;
+    min-height: 100vh;
+}
