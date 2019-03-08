@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
 import firebase from './firebase';
@@ -88,7 +88,7 @@ class GamePage extends Component {
         })
     }
 
-    handleCurrentMovie = async (event) => {
+    addCurrentMovie = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
         // we get this informations from the click and set the state of that clicked movie
@@ -107,48 +107,52 @@ class GamePage extends Component {
         // this.state.chosenMovies.push(this.state.clickedMovie);
     }
 
+
+
     render() {
         return (
-            <section className="gamePage">
-                <h1>Box Office Boffo</h1>
-                <select onChange={this.handleYear}>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
-                    <option value="2013">2013</option>
-                    <option value="2012">2012</option>
-                    <option value="2011">2011</option>
-                    <option value="2010">2010</option>
-                    <option value="2009">2009</option>
-                    <option value="2008">2008</option>
-                </select>
-                {/* We pass the state of year to the Axios component to modify the search parameters */}
+            <Fragment>
+                <section className="gamePage">
+                    <h1>Box Office Boffo</h1>
+                    <select onChange={this.handleYear}>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                    </select>
+                    {/* We pass the state of year to the Axios component to modify the search parameters */}
 
 
-                <div className="movieCatalogue clearfix">
-                    {this.state.results.filter(movie => {
-                        return movie.poster_path !== null;
-                    }).map(movie => {
-                        const movieName = this.state.movieName;
-                        return (
-                            <div key={movie.id} className="movieCatalogueMovie">
-                                {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
+                    <div className="movieCatalogue clearfix">
+                        {this.state.results.filter(movie => {
+                            return movie.poster_path !== null;
+                        }).map(movie => {
+                            const movieName = this.state.movieName;
+                            return (
+                                <div key={movie.id} className="movieCatalogueMovie">
+                                    {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
-                                <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                <button value={movie.title} onClick={this.handleCurrentMovie}>+</button>
+                                    <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                    <button value={movie.title} onClick={this.addCurrentMovie}>+</button>
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
+                    {/* we give the chosenMovies to CurrentList Component as a props */}
 
-                            </div>
-                        )
-                    })
-                    }
-                </div>
-                {/* we give the chosenMovies to CurrentList Component as a props */}
+                </section>
                 <CurrentList chosenMovies={this.state.chosenMovies} />
-
-            </section>
+            </Fragment>
+            
         )
     }
 
