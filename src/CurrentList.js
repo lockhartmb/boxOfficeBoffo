@@ -61,23 +61,23 @@ class CurrentList extends Component {
 }
 
 
-const SortableList = SortableContainer(({ items }, props) => {
+const SortableList = SortableContainer(({ items }) => {
 
 	return (
 		<ul className="currentList">
 			{items.map((value, index) => (
 
-				< SortableItem handleDelete={props.handleDelete} key={`item-${index}`} index={index} value={value} />
+				< SortableItem key={`item-${index}`} index={index} value={value} />
 			))}
 		</ul>
 	);
 });
 
-const SortableItem = SortableElement(({ value }, { index }, props) => {
+const SortableItem = SortableElement(({ value }, { index }) => {
 	return (
 		<li id={index} key={index}>
 			{value}
-			<button onClick={() => props.handleDelete(value.index)}>Delete</button>
+			<button >Delete</button>
 		</li>);
 });
 
