@@ -17,7 +17,7 @@ class CurrentList extends Component {
 			items: []
 		};
 	}
-
+	
 	// onDelete = (index) => {
 	// 	const updatedList = this.state.items.splice(index, 1);
 	// 	this.setState({
@@ -49,12 +49,12 @@ class CurrentList extends Component {
 	}
 
 	render() {
-		return <SortableList onDelete={this.onDelete} items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
 	}
 }
 
 
-const SortableList = SortableContainer(({ items }, { onDelete }) => {
+const SortableList = SortableContainer(({ items }) => {
 
 	return (
 		<ul className="currentList">
@@ -71,23 +71,23 @@ const SortableItem = SortableElement(({ value }, { index }) => {
 		<li id={index} key={index}>
 			{value}
 			{/* { value ? <DeleteButton onDelete={onDelete} index={index} /> : null } */}
-
+			
 		</li>);
 });
 
 
-class DeleteButton extends Component {
-	deleteItem = () => {
-		this.props.onDelete(this.props.index);
-	}
+// class DeleteButton extends Component {
+// 	deleteItem = () => {
+// 		this.props.onDelete(this.props.index);
+// 	}
 
-	render() {
-
-		return (
-			<button onClick={this.deleteItem}>delete button</button>
-		)
-	}
-}
+// 	render() {
+		
+// 		return (
+// 			<button onClick={this.deleteItem}>delete button</button>
+// 		)
+// 	}
+// }
 
 
 
