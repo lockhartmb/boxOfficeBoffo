@@ -24,10 +24,10 @@ class CurrentList extends Component {
 		}));
 	};
 
-	handleDelete = () => {
-		const dbRef = firebase.database().ref(this.props.userName).child().remove();
-		/* console.log(dbRef)
-		dbRef.remove(); */
+	handleDelete = (key) => {
+		console.log(key);
+		const dbRef = firebase.database().ref(this.props.userName);
+		dbRef.remove();
 	}
 
 
@@ -38,17 +38,9 @@ class CurrentList extends Component {
 
 			const titleList = [];
 
-			this.props.chosenMovies.map((movie) => {
 
-				const title = movie.title;
-				titleList.push(title);
-				// console.log('titles', titles);  
-
-
-			})
-			console.log('title list', titleList)
 			this.setState({
-				items: titleList
+				items: this.props.chosenMovies
 			})
 
 		}
@@ -56,28 +48,29 @@ class CurrentList extends Component {
 
 	render() {
 
-		return <SortableList handleDelete={this.handleDelete} items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return <SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />;
 	}
 }
 
 
-const SortableList = SortableContainer(({ items }) => {
-
+const SortableList = SortableContainer(({ items, handleDelete }) => {
 	return (
 		<ul className="currentList">
-			{items.map((value, index) => (
+			{items.map((value, index) => {
+				return <SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
 
-				< SortableItem key={`item-${index}`} index={index} value={value} />
-			))}
+			}
+
+			)}
 		</ul>
 	);
 });
 
-const SortableItem = SortableElement(({ value }, { index }) => {
+const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-		<li id={index} key={index}>
-			{value}
-			<button >Delete</button>
+		<li id={firebaseKey} key={firebaseKey}>
+			{title}
+			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
 		</li>);
 });
 
@@ -85,7 +78,3 @@ const SortableItem = SortableElement(({ value }, { index }) => {
 
 // render(<CurrentList />, document.getElementById('root'));
 export default CurrentList;
-
-
-
-
