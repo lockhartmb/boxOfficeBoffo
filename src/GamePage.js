@@ -79,10 +79,6 @@ class GamePage extends Component {
     // handleYear is always looking for the chosen year, so if a new year is chosen in the dropdown, GamePage will know about it (it's state is updated)
     handleYear = (event) => {
         event.preventDefault();
-        const dbRef = firebase.database().ref();
-        const test = "testingg firebase"
-        // dbRexf.push(test)
-
         this.setState({
             year: event.target.value
         })
@@ -91,6 +87,10 @@ class GamePage extends Component {
     addCurrentMovie = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
+        const dbRef = firebase.database().ref();
+        const data = event.target.value;
+        console.log(data)
+        dbRef.push(data);
         // we get this informations from the click and set the state of that clicked movie
         await this.setState({
             clickedMovie: event.target.value
@@ -136,7 +136,7 @@ class GamePage extends Component {
                         {this.state.results.filter(movie => {
                             return movie.poster_path !== null;
                         }).map(movie => {
-                            const movieName = this.state.movieName;
+
                             return (
                                 <div key={movie.id} className="movieCatalogueMovie">
                                     {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
@@ -154,9 +154,9 @@ class GamePage extends Component {
                     {/* we give the chosenMovies to CurrentList Component as a props */}
 
                 </section>
-                <CurrentList chosenMovies={this.state.chosenMovies} />
+                <CurrentList chosenMovies={this.state.chosenMovies} clickedMovie={this.state.clickedMovie} />
             </Fragment>
-            
+
         )
     }
 
