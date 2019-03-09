@@ -81,7 +81,7 @@ class GamePage extends Component {
         event.preventDefault();
         const dbRef = firebase.database().ref();
         const test = "testingg firebase"
-        dbRef.push(test)
+        // dbRexf.push(test)
 
         this.setState({
             year: event.target.value
@@ -115,7 +115,7 @@ class GamePage extends Component {
                 <section className="gamePage">
                     <h1>Hi {this.props.userName}! Welcome to Box Office Boffo</h1>
 
-                    <select onChange={this.handleYear}>
+                    <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
                         <option value="2017">2017</option>
@@ -142,7 +142,10 @@ class GamePage extends Component {
                                     {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                     <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                    <button value={movie.title} onClick={this.addCurrentMovie}>+</button>
+                                    <button value={movie.title} onClick={this.addCurrentMovie}>
+                                        <i class="fas fa-plus"></i>
+                                        <span className="visuallyHidden">Add movie to list</span>
+                                    </button>
                                 </div>
                             )
                         })
