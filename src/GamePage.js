@@ -94,22 +94,30 @@ class GamePage extends Component {
         await this.setState({
             clickedMovie: data
         })
+        console.log('data after clicking', data)
         //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
         dbRef.on('value', response => {
-            const data = response.val();
+            console.log(response);
+            const dataVal = response.val();
             const newMovieArray = []
-            console.log(data)
-
-        //     for (let key in data) {
-        //         newMovieArray.push({
-        //             key: key,
-        //             title: data[key]
-        //         });
-        //     }
-        //       this.setState({
-        //     chosenMovies: newMovieArray
-        // })
+            console.log('Data on Value', dataVal)
+            // console.log('Key in Data Value', dataVal.key)
+            for (let key in dataVal) {
+                newMovieArray.push({
+                    key: key,
+                    title: dataVal[key]
+                });
+            }
+            console.log('Response on Value', newMovieArray);
+            const firebaseMovieArray = [...newMovieArray]
+            console.log('array in firebasemoviearray object', firebaseMovieArray);
+            this.setState({
+                chosenMovies: firebaseMovieArray.title
+            })
+            //   this.setState({
+            // chosenMovies: newMovieArray
         })
+        // }
     }
         
         
