@@ -1,10 +1,16 @@
-.movieCatalogue {
-    width: 90%;
-    height: 90%;
-    overflow: scroll;
-    margin-left: 5%;
+.gamePage {
+    width: 75%;
+    float: left;
+    border-top: 80px solid #58728d;
+    border-bottom: 80px solid #58728d;
+    height: 100vh;
 }
 
+.movieCatalogue {
+    overflow: scroll;
+    padding: 40px 20px;
+    height: 80%;
+}
 
 .movieCatalogueMovie {
     width: 25%;
@@ -13,27 +19,31 @@
     position: relative;
     object-fit: fill;
     overflow: hidden;
-    margin-bottom: 2%;
+    padding: 10px;
+    /* margin-bottom: 2%; */
 }
 
 .movieCatalogueMovie button {
     border: none;
-    border-radius: 50%;
-    background-color: green;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    text-align: center;
+    background-color: teal;
     font-weight: bold;
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 99;
 }
 
-.gamePage {
-    width: 75%;
-    float: left;
-    border-top: 100px solid #58728d;
-    border-bottom: 100px solid #58728d;
-    height: 100vh;
+.yearDropDown {
+    width: 100%;
+    /* background-color: teal; */
+    text-align: center;
+    border: none;
+    background-color: rgba(0, 128, 128, 0.5);
+    background: url(assets/dropDownArrow.png) right no-repeat;
+    appearance: none;
+    cursor: pointer;
 }
-
-
-
-
