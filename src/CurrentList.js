@@ -24,21 +24,27 @@ class CurrentList extends Component {
 		}));
 	};
 
+	handleDelete = () => {
+		const dbRef = firebase.database().ref(this.props.userName).child().remove();
+		/* console.log(dbRef)
+		dbRef.remove(); */
+	}
+
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
 	componentDidUpdate(prevProps) {
 		if (prevProps.chosenMovies.length !== this.props.chosenMovies.length) {
-			
+
 
 			const titleList = [];
 
 			this.props.chosenMovies.map((movie) => {
-				
+
 				const title = movie.title;
 				titleList.push(title);
 				// console.log('titles', titles);  
-				
-				
+
+
 			})
 			console.log('title list', titleList)
 			this.setState({
@@ -50,25 +56,29 @@ class CurrentList extends Component {
 
 	render() {
 
-		return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return <SortableList handleDelete={this.handleDelete} items={this.state.items} onSortEnd={this.onSortEnd} />;
 	}
 }
 
 
-const SortableList = SortableContainer(({ items }) => {
+const SortableList = SortableContainer(({ items }, props) => {
 
 	return (
 		<ul className="currentList">
 			{items.map((value, index) => (
-				<SortableItem key={`item-${index}`} index={index} value={value} />
+
+				< SortableItem handleDelete={props.handleDelete} key={`item-${index}`} index={index} value={value} />
 			))}
 		</ul>
 	);
 });
 
-const SortableItem = SortableElement(({ value }, { index }) => {
+const SortableItem = SortableElement(({ value }, { index }, props) => {
 	return (
-		<li id={index} key={index}>{value}</li>);
+		<li id={index} key={index}>
+			{value}
+			<button onClick={() => props.handleDelete(value.index)}>Delete</button>
+		</li>);
 });
 
 
