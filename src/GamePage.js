@@ -86,10 +86,9 @@ class GamePage extends Component {
 
     addCurrentMovie = async (event) => {
         event.preventDefault();
-        console.log(event.target.value);
         const dbRef = firebase.database().ref();
         const data = event.target.value;
-        console.log(data)
+
         dbRef.push(data);
         // we get this informations from the click and set the state of that clicked movie
         await this.setState({
@@ -154,7 +153,7 @@ class GamePage extends Component {
                     {/* we give the chosenMovies to CurrentList Component as a props */}
 
                 </section>
-                <CurrentList chosenMovies={this.state.chosenMovies} clickedMovie={this.state.clickedMovie} />
+                <CurrentList chosenMovies={this.state.chosenMovies} />
             </Fragment>
 
         )

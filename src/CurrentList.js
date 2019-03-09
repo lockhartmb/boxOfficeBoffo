@@ -17,7 +17,7 @@ class CurrentList extends Component {
 			items: []
 		};
 	}
-	
+
 	// onDelete = (index) => {
 	// 	const updatedList = this.state.items.splice(index, 1);
 	// 	this.setState({
@@ -59,19 +59,19 @@ const SortableList = SortableContainer(({ items }, { onDelete }) => {
 	return (
 		<ul className="currentList">
 			{items.map((value, index) => (
-				<SortableItem onDelete={onDelete} key={`item-${index}`} index={index} value={value} />
+				<SortableItem key={`item-${index}`} index={index} value={value} />
 			))}
 		</ul>
 	);
 });
 
 
-const SortableItem = SortableElement(({ value }, { index }, { onDelete }) => {
+const SortableItem = SortableElement(({ value }, { index }) => {
 	return (
 		<li id={index} key={index}>
 			{value}
 			{/* { value ? <DeleteButton onDelete={onDelete} index={index} /> : null } */}
-			
+
 		</li>);
 });
 
@@ -82,7 +82,7 @@ class DeleteButton extends Component {
 	}
 
 	render() {
-		
+
 		return (
 			<button onClick={this.deleteItem}>delete button</button>
 		)
