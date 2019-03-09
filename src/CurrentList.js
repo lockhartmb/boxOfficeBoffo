@@ -16,6 +16,13 @@ class CurrentList extends Component {
 			items: []
 		};
 	}
+	
+	// onDelete = (index) => {
+	// 	const updatedList = this.state.items.splice(index, 1);
+	// 	this.setState({
+	// 		items: updatedList
+	// 	})
+	// }
 
 	onSortEnd = ({ oldIndex, newIndex }) => {
 		this.setState(({ items }) => ({
@@ -28,27 +35,53 @@ class CurrentList extends Component {
 			this.setState({
 				items: this.props.chosenMovies
 			})
-
 		}
 	}
 
 	render() {
-		return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return <SortableList onDelete={this.onDelete} items={this.state.items} onSortEnd={this.onSortEnd} />;
 	}
 }
 
 
-const SortableList = SortableContainer(({ items }) => {
+const SortableList = SortableContainer(({ items }, { onDelete }) => {
+
 	return (
 		<ul className="currentList">
 			{items.map((value, index) => (
-				<SortableItem key={`item-${index}`} index={index} value={value} />
+				<SortableItem onDelete={onDelete} key={`item-${index}`} index={index} value={value} />
 			))}
 		</ul>
 	);
 });
 
-const SortableItem = SortableElement(({ value }) => <li>{value}</li>);
+
+const SortableItem = SortableElement(({ value }, { index }, { onDelete }) => {
+	return (
+		<li id={index} key={index}>
+			{value}
+			{/* { value ? <DeleteButton onDelete={onDelete} index={index} /> : null } */}
+			
+		</li>);
+});
+
+
+class DeleteButton extends Component {
+	deleteItem = () => {
+		this.props.onDelete(this.props.index);
+	}
+
+	render() {
+		
+		return (
+			<button onClick={this.deleteItem}>delete button</button>
+		)
+	}
+}
+
+
+
+
 
 // render(<CurrentList />, document.getElementById('root'));
 export default CurrentList;
