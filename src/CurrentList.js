@@ -24,10 +24,10 @@ class CurrentList extends Component {
 		}));
 	};
 
-	handleDelete = () => {
+	handleDelete = (key) => {
+		console.log(key);
 		const dbRef = firebase.database().ref(this.props.userName).child().remove();
-		/* console.log(dbRef)
-		dbRef.remove(); */
+		dbRef.remove();
 	}
 
 
@@ -38,17 +38,9 @@ class CurrentList extends Component {
 
 			const titleList = [];
 
-			this.props.chosenMovies.map((movie) => {
-
-				const title = movie.title;
-				titleList.push(title);
-				// console.log('titles', titles);  
-
-
-			})
-			console.log('title list', titleList)
+			
 			this.setState({
-				items: titleList
+				items: this.props.chosenMovies
 			})
 
 		}
@@ -56,28 +48,29 @@ class CurrentList extends Component {
 
 	render() {
 
-		return <SortableList handleDelete={this.handleDelete} items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return <SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />;
 	}
 }
 
 
-const SortableList = SortableContainer(({ items }, props) => {
+const SortableList = SortableContainer(({ items }, handleDelete, ...props) => {
+	console.log(handleDelete);
 
 	return (
 		<ul className="currentList">
 			{items.map((value, index) => (
 
-				< SortableItem handleDelete={props.handleDelete} key={`item-${index}`} index={index} value={value} />
+				<SortableItem handleDelete={(key) => props.handleDelete(key)} key={value.key} index={index} title={value.title} />
 			))}
 		</ul>
 	);
 });
 
-const SortableItem = SortableElement(({ value }, { index }, props) => {
+const SortableItem = SortableElement(({ title }, { key }, ...props) => {
 	return (
-		<li id={index} key={index}>
-			{value}
-			<button onClick={() => props.handleDelete(value.index)}>Delete</button>
+		<li id={key} key={key}>
+			{title}
+			<button onClick={(key) => props.handleDelete(key)}>Delete</button>
 		</li>);
 });
 
