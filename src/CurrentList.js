@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from './firebase';
 import { render } from 'react-dom';
 import "./CurrentList.css";
 import "./Global.css";
@@ -23,6 +24,15 @@ class CurrentList extends Component {
 		}));
 	};
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
+	/* {
+	 //we get the props clickedMovie from GamePage Component
+	 const { clickedMovie } = this.props;
+	 const dbRef = firebase.database().ref(`clickedMovie`);
+	 const data = clickedMovie;
+	 console.log(clickedMovie)
+	 dbRef.push(data);
+
+ } */
 	componentDidUpdate(prevProps) {
 		if (prevProps.chosenMovies.length !== this.props.chosenMovies.length) {
 			this.setState({
