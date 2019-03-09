@@ -17,38 +17,39 @@ class CurrentList extends Component {
 			items: []
 		};
 	}
-	
-	// onDelete = (index) => {
-	// 	const updatedList = this.state.items.splice(index, 1);
-	// 	this.setState({
-	// 		items: updatedList
-	// 	})
-	// }
 
 	onSortEnd = ({ oldIndex, newIndex }) => {
 		this.setState(({ items }) => ({
 			items: arrayMove(items, oldIndex, newIndex),
 		}));
 	};
-	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
-	/* {
-	 //we get the props clickedMovie from GamePage Component
-	 const { clickedMovie } = this.props;
-	 const dbRef = firebase.database().ref(`clickedMovie`);
-	 const data = clickedMovie;
-	 console.log(clickedMovie)
-	 dbRef.push(data);
 
- } */
+
+	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
 	componentDidUpdate(prevProps) {
 		if (prevProps.chosenMovies.length !== this.props.chosenMovies.length) {
-			this.setState({
-				items: this.props.chosenMovies
+			
+
+			const titleList = [];
+
+			this.props.chosenMovies.map((movie) => {
+				
+				const title = movie.title;
+				titleList.push(title);
+				// console.log('titles', titles);  
+				
+				
 			})
+			console.log('title list', titleList)
+			this.setState({
+				items: titleList
+			})
+
 		}
 	}
 
 	render() {
+
 		return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
 	}
 }
@@ -65,31 +66,10 @@ const SortableList = SortableContainer(({ items }) => {
 	);
 });
 
-
 const SortableItem = SortableElement(({ value }, { index }) => {
 	return (
-		<li id={index} key={index}>
-			{value}
-			{/* { value ? <DeleteButton onDelete={onDelete} index={index} /> : null } */}
-			
-		</li>);
+		<li id={index} key={index}>{value}</li>);
 });
-
-
-// class DeleteButton extends Component {
-// 	deleteItem = () => {
-// 		this.props.onDelete(this.props.index);
-// 	}
-
-// 	render() {
-		
-// 		return (
-// 			<button onClick={this.deleteItem}>delete button</button>
-// 		)
-// 	}
-// }
-
-
 
 
 

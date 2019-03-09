@@ -40,7 +40,7 @@ class GamePage extends Component {
 
     fetchData = async () => {
         let { year } = this.state;
-        console.log('fetchData')
+        // console.log('fetchData')
 
         await axios({
             method: 'GET',
@@ -70,7 +70,6 @@ class GamePage extends Component {
             // .then() and this.setState() will wait until the axios call is done because it has "await" on it
         }).then(response => {
             const results = response.data.results;
-            console.log(response)
             this.setState({ results });
         })
     }
@@ -94,43 +93,25 @@ class GamePage extends Component {
         await this.setState({
             clickedMovie: data
         })
-        console.log('data after clicking', data)
+        // console.log('data after clicking', data)
         //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
         dbRef.on('value', response => {
-            console.log(response);
-            const dataVal = response.val();
-            const newMovieArray = []
-            console.log('Data on Value', dataVal)
+            const moviesFromFirebase = response.val();
+            const getMoviesBack = []
+            // console.log(moviesFromFirebase)
             // console.log('Key in Data Value', dataVal.key)
-            for (let key in dataVal) {
-                newMovieArray.push({
+            for (let key in moviesFromFirebase) {
+                getMoviesBack.push({
                     key: key,
-                    title: dataVal[key]
+                    title: moviesFromFirebase[key]
                 });
             }
-            console.log('Response on Value', newMovieArray);
-            const firebaseMovieArray = [...newMovieArray]
-            console.log('array in firebasemoviearray object', firebaseMovieArray);
+            // console.log(getMoviesBack);
             this.setState({
-                chosenMovies: firebaseMovieArray.title
+                chosenMovies: getMoviesBack
             })
-            //   this.setState({
-            // chosenMovies: newMovieArray
         })
-        // }
     }
-        
-        
-        // const newMovieArray = [...this.state.chosenMovies];
-        // newMovieArray.push(this.state.clickedMovie);
-        // this.setState({
-        //     chosenMovies: newMovieArray
-        // })
-        // console.log(this.state.chosenMovies);
-
-
-        // this.state.chosenMovies.push(this.state.clickedMovie);
-
 
 
     render() {
