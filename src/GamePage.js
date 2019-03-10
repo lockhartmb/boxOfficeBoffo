@@ -89,7 +89,7 @@ class GamePage extends Component {
         event.preventDefault();
         let numberOfMovies = this.state.chosenMovies.length;
         const canAddMovies = numberOfMovies < 10;
-        console.log(canAddMovies)
+        // console.log(canAddMovies)
         if (canAddMovies) {
             const dbRef = firebase.database().ref(this.props.userName);
             const data = event.target.value;
@@ -132,8 +132,6 @@ class GamePage extends Component {
         return (
             <Fragment>
                 <section className="gamePage">
-                    <h1>Hi {this.props.userName}! Welcome to Box Office Boffo</h1>
-
                     <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
@@ -161,6 +159,9 @@ class GamePage extends Component {
                                     {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                     <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                    <div className="overlay">
+                                        <p>{movie.title}</p>
+                                    </div>
                                     <button className="addMovie" value={movie.title} onClick={this.addCurrentMovie} >
                                         <i className="fas fa-plus"></i>
                                         <span className="visuallyHidden">Add movie to list</span>

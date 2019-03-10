@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
 import { render } from 'react-dom';
 import "./CurrentList.css";
@@ -30,15 +30,12 @@ class CurrentList extends Component {
 		dbRef.remove();
 	}
 
-	handleSubmit = () => {
-
+	handleSubmit = (event) => {
+		event.preventDefault();
 		const dbRef = firebase.database().ref(this.props.userName);
 		console.log(dbRef)
 		dbRef.push(this.state.items);
 	}
-
-
-
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
 	componentDidUpdate(prevProps) {
@@ -52,10 +49,10 @@ class CurrentList extends Component {
 	// passing handleDelete function to child components
 	render() {
 		return (
-			<fragment>
+			<Fragment>
 				<SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />
 				<button className="submitList" onClick={this.handleSubmit}>Submit</button>
-			</fragment>
+			</Fragment>
 		)
 	}
 }
@@ -63,21 +60,21 @@ class CurrentList extends Component {
 const SortableList = SortableContainer(({ items, handleDelete }) => {
 
 	return (
-		<ul className="currentList">
+		<ol className="currentList">
 			{items.map((value, index) => {
 				// passing handleDelete function and the firebase key to child components
 				return <SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
 			}
 			)}
 
-		</ul>
+		</ol>
 	);
 });
 
 // the delete button here can now use the handleDelete function and the firebase key that have been passed down
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-		<li id={firebaseKey} key={firebaseKey}>
+		<li id={firebaseKey}>
 			{title}
 			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
 		</li>);
