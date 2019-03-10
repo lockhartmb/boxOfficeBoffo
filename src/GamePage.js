@@ -20,6 +20,7 @@ class GamePage extends Component {
             clickedMovie: '',
             chosenMovies: [],
 
+
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -173,7 +174,7 @@ class GamePage extends Component {
                     {/* we give the chosenMovies to CurrentList Component as a props */}
 
                 </section>
-                <CurrentList chosenMovies={this.state.chosenMovies} />
+                <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} />
             </Fragment>
 
         )

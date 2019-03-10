@@ -25,12 +25,18 @@ class CurrentList extends Component {
 	};
 
 	handleDelete = (key) => {
-		console.log(key);
+		/* console.log(key);
+		const { userName } = this.props
+		const dbRef = firebase.database().ref((userName);*/
 
-		const dbRef = firebase.database().ref(this.props.userName);
 
+
+
+		const dbRef = firebase.database().ref(this.props.userName).child(key);
+		console.log(dbRef);
 		dbRef.remove();
 	}
+
 
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
