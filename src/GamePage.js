@@ -160,7 +160,7 @@ class GamePage extends Component {
                                     {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                     <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                    <button value={movie.title} onClick={this.addCurrentMovie}>
+                                    <button value={movie.title} onClick={this.addCurrentMovie} >
                                         <i className="fas fa-plus"></i>
                                         <span className="visuallyHidden">Add movie to list</span>
                                     </button>

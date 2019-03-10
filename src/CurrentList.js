@@ -26,7 +26,9 @@ class CurrentList extends Component {
 
 	handleDelete = (key) => {
 		console.log(key);
-		const dbRef = firebase.database().ref(this.props.userName).child().remove();
+
+		const dbRef = firebase.database().ref(this.props.userName);
+
 		dbRef.remove();
 	}
 
@@ -38,7 +40,7 @@ class CurrentList extends Component {
 
 			const titleList = [];
 
-			
+
 			this.setState({
 				items: this.props.chosenMovies
 			})
@@ -54,28 +56,29 @@ class CurrentList extends Component {
 
 
 
-const SortableList = SortableContainer(({ items , handleDelete}) => {
-	console.log(handleDelete);
+const SortableList = SortableContainer(({ items, handleDelete }) => {
 
 
 	return (
 		<ul className="currentList">
-			{items.map((value, index) => (
+			{items.map((value, index) => {
+				return <SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
+
+			}
 
 
-				<SortableItem handleDelete={(key) => props.handleDelete(key)} key={value.key} index={index} title={value.title} />
+			)}
 
-			))}
 		</ul>
 	);
 });
 
 
-const SortableItem = SortableElement(({ title }, { key }, ...props) => {
+const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-		<li id={key} key={key}>
+		<li id={firebaseKey} key={firebaseKey}>
 			{title}
-			<button onClick={(key) => props.handleDelete(key)}>Delete</button>
+			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
 
 		</li>);
 });
@@ -84,7 +87,3 @@ const SortableItem = SortableElement(({ title }, { key }, ...props) => {
 
 // render(<CurrentList />, document.getElementById('root'));
 export default CurrentList;
-
-
-
-
