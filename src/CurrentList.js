@@ -26,14 +26,15 @@ class CurrentList extends Component {
 
 	// need to figure out how to delete only one movie from the list ie. .child() but for now it is deleting the whole list
 	handleDelete = (key) => {
-
-
-
-
-
 		const dbRef = firebase.database().ref(this.props.userName).child(key);
-		console.log(dbRef);
 		dbRef.remove();
+	}
+
+	handleSubmit = () => {
+
+		const dbRef = firebase.database().ref(this.props.userName);
+		console.log(dbRef)
+		dbRef.push(this.state.items);
 	}
 
 
@@ -50,7 +51,12 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
-		return <SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return (
+			<fragment>
+				<SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />
+				<button className="submitList" onClick={this.handleSubmit}>Submit</button>
+			</fragment>
+		)
 	}
 }
 
@@ -63,6 +69,7 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 				return <SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
 			}
 			)}
+
 		</ul>
 	);
 });
