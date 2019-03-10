@@ -2,18 +2,15 @@
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    background: red;
+    background: #58728d;
     margin: 0 auto;
     border: 1px solid #3080eb;
 }
 
 .landingPage {
-    border-top: 100px solid #58728d;
-    border-bottom: 100px solid #58728d;
+    border-top: 100px solid #3080eb;
+    /* border-bottom: 100px solid #3080eb; */
     min-height: 100vh;
-    /* background-image: url(assets/popcorn.jpg); */
-    /* background-position: center center; */
-    /* background-size: cover; */
 }
 
 .contentContainer {
@@ -48,9 +45,35 @@
     text-decoration: none;
     box-shadow: 3px 5px 3px 0 grey;
     transform: translateX(0) translateY(0);
-    transition: transform 0.15s ease-in-out;
+    transition: transform 0.25s ease-in-out;
 }
 
 .startButton:active {
     transform: translateX(3px) translateY(3px);
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-size: 2rem;
+    background-color: #3080eb;
+    text-align: center;
+}
+
+footer i {
+    padding: 10px;
+}
+
+footer a {
+    margin: 30px 0;
+    float: left;
+    width: calc(100% / 3);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+
+footer p {
+    font-size: 1rem;
 }

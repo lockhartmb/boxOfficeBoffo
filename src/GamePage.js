@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Qs from 'qs';
 import firebase from './firebase';
@@ -171,10 +172,25 @@ class GamePage extends Component {
                             )
                         })
                         }
-                    </div>
-                    {/* we give the chosenMovies to CurrentList Component as a props */}
+                    </div> {/* end of movieCatalogue div*/}
+                    <footer className="gameFooter clearfix">
+                        <Link to="/" className="homeButton">
+                            <i class="fas fa-home"></i>
+                            <span className="visuallyHidden">Home Icon</span>
+                        </Link>
+                        <Link to="/" className="homeButton">
+                            <i className="fas fa-plus"></i>
+                            <span className="visuallyHidden">Add new list</span>
+                        </Link>
 
+                        <Link to="/completedLists" className="allListsButton">
+                            <i class="fas fa-list-ul"></i>
+                            <span className="visuallyHidden">Completed Lists</span>
+                        </Link>
+                    </footer>
                 </section>
+
+                {/* we give the chosenMovies and userName to CurrentList Component as a props */}
                 <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} />
             </Fragment>
 
