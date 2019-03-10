@@ -26,7 +26,9 @@ class CurrentList extends Component {
 
 	handleDelete = (key) => {
 		console.log(key);
+
 		const dbRef = firebase.database().ref(this.props.userName);
+
 		dbRef.remove();
 	}
 
@@ -53,7 +55,10 @@ class CurrentList extends Component {
 }
 
 
+
 const SortableList = SortableContainer(({ items, handleDelete }) => {
+
+
 	return (
 		<ul className="currentList">
 			{items.map((value, index) => {
@@ -61,16 +66,20 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 
 			}
 
+
 			)}
+
 		</ul>
 	);
 });
+
 
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
 		<li id={firebaseKey} key={firebaseKey}>
 			{title}
 			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
+
 		</li>);
 });
 
