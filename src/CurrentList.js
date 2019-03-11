@@ -13,7 +13,8 @@ class CurrentList extends Component {
 	constructor() {
 		super();
 		this.state = {
-			items: []
+			items: [],
+			class: 'hide',
 		};
 	}
 
@@ -49,12 +50,25 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
+		if (this.state.items.length === 10) {
+			this.state.class = 'show'
+		}
 		return (
-			<Fragment>
-				<SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />
-				<button className="submitList" onClick={this.handleSubmit}>Submit</button>
-			</Fragment>
-		)
+      <Fragment>
+        <SortableList
+          handleDelete={key => this.handleDelete(key)}
+          items={this.state.items}
+          onSortEnd={this.onSortEnd}
+        />
+        {/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
+        <div className={this.state.class}>
+          <button className="reset btn">reset</button>
+          <button className="confirm btn" onClick={this.handleSubmit}>
+            confirm
+          </button>
+        </div>
+      </Fragment>
+    );
 	}
 }
 

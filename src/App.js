@@ -3,10 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import GamePage from './GamePage.js';
-// import CompletedLists from './CompletedLists.js';
+import CompletedLists from './CompletedLists.js';
 import "./Global.css";
-
-import FinalLists from "./FinalLists";
 
 class App extends Component {
   constructor() {
@@ -34,8 +32,9 @@ class App extends Component {
           {/* URL path to go to the game page. This route is also sending the userName state to the GamePage component*/}
           <Route path='/gamepage' render={() => {
             return <GamePage userName={this.state.userName} /> }
-          } /> 
-          <FinalLists/>
+          } />
+          <Route path="/completedLists" component={CompletedLists} />
+          {/* <FinalLists/> */}
         </div>
       </Router>
 

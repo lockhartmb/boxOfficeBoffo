@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import firebase from "./firebase";
 import "./Global.css";
 
-class FinalLists extends Component {
+class CompletedLists extends Component {
     constructor() {
         super();
         this.state = {
@@ -12,23 +12,23 @@ class FinalLists extends Component {
         };
     }
 
-    getListData = () => {
+    // getListData = () => {
 
-        const movies = [];
-        this.state.displayList.map(listDetails => {
-            movies.push( 
-                    {
-                        [listDetails.user.userName]: listDetails.userlist
-                    } 
-                )  
-        })
-        console.log(movies);
-    }
+    //     const movies = [];
+    //     this.state.displayList.map(listDetails => {
+    //         movies.push( 
+    //                 {
+    //                     [listDetails.user.userName]: listDetails.userlist
+    //                 } 
+    //             )  
+    //     })
+    //     console.log(movies);
+    // }
 
     render() {
         return (
             <div>
-                {/* <p>FML</p> */}
+                <p>FML</p>
             </div>
         )
     }
@@ -40,18 +40,19 @@ componentDidMount() {
     
         const dbRef = firebase.database().ref('LockedLists')
         const listArray = []
+        // console.log(dbRef)
         dbRef.on('value', listObject => {
             const moviesFromFirebase = listObject.val()
             for (let key in moviesFromFirebase) {
                 listArray.push({
-                    key: key,
-                    user: moviesFromFirebase[key]
+                    key: moviesFromFirebase[key]
                 });
             }
+            console.log(listArray)
             this.setState({
                 userList: listArray
             })
-            this.getListData()
+            // this.getListData()
             // console.log('after state',this.state.displayList);
         })
         // console.log(listArray) 
@@ -59,4 +60,4 @@ componentDidMount() {
 
     }
 }
-export default FinalLists
+export default CompletedLists
