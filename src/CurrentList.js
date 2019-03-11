@@ -14,7 +14,7 @@ class CurrentList extends Component {
 		super();
 		this.state = {
 			items: [],
-			class: 'hide',
+			class: '',
 		};
 	}
 
@@ -31,9 +31,9 @@ class CurrentList extends Component {
 		dbRef.remove();
 	}
 
-	handleSubmit = () => {
+	handleSubmit = (key, title) => {
 		const dbRef = firebase.database().ref('LockedLists')
-			.set({ list: { key: { key }, title: { movie.title } });
+			.set({ list: { key: { key }, title: { title } } });
 		/* const dbRef = firebase.database().ref('LockedLists'); */
 		console.log(dbRef)
 		const itemsObject = { ...this.state.items }
@@ -46,17 +46,14 @@ class CurrentList extends Component {
 		if (prevProps.chosenMovies.length !== this.props.chosenMovies.length) {
 			this.setState({
 				items: this.props.chosenMovies
-			})
+			});
 		}
 	}
 
 	// passing handleDelete function to child components
 	render() {
-		if (this.state.items.length === 10) {
-			this.setState({
-				class: 'show'
-			})
-		}
+		
+
 		return (
 			<Fragment>
 				<SortableList
@@ -65,12 +62,13 @@ class CurrentList extends Component {
 					onSortEnd={this.onSortEnd}
 				/>
 				{/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
+				{this.state.items.length === 10 ? 
 				<div className={this.state.class}>
 					<button className="reset btn">reset</button>
-					<button className="confirm btn" onClick={this.handleSubmit}>
-						confirm
-          </button>
-				</div>
+					<button className="confirm btn" onClick={this.handleSubmit}>confirm</button>
+				</div> :
+				null
+				}
 			</Fragment>
 		);
 	}
