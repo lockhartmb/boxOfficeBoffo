@@ -28,7 +28,7 @@ class FinalLists extends Component {
     render() {
         return (
             <div>
-                <p>FML</p>
+                {/* <p>FML</p> */}
             </div>
         )
     }
