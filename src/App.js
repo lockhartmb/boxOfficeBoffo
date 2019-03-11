@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import GamePage from './GamePage.js';
-// import CompletedLists from './CompletedLists.js';
+import CompletedLists from './CompletedLists.js';
 import "./Global.css";
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
           <Route path='/gamepage' render={() => {
             return <GamePage userName={this.state.userName} /> }
           } />
-          {/* <Route path='/completedlists' component={CompletedLists}/> */}
+          <Route path='/completedlists' component={CompletedLists}/>
         </div>
       </Router>
 
