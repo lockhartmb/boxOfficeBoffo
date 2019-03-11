@@ -197,7 +197,7 @@ class GamePage extends Component {
                     {/* <ResetConfirm className={this.state.class}/> */}
                     <div className={this.state.class}>
                         <button className="reset btn">reset</button>
-                        <button className="confirm btn" >confirm</button>
+                        <button className="confirm btn">confirm</button>
                     </div>
                     
                 </div>

@@ -78,8 +78,8 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
 		<li id={firebaseKey}>
-			{title}
-			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
+			<h2>{title}</h2>
+			<button className="delete" onClick={() => handleDelete(firebaseKey)}><i class="fas fa-minus-circle delete"></i></button>
 		</li>);
 });
 
