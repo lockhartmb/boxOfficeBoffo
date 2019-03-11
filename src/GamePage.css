@@ -61,6 +61,11 @@
     right: 0;
 }
 
+.instructions {
+    font-weight: bold;
+    padding: 10px;
+}
+
 .yearDropDown {
     width: 90%;
     padding: 10px;
@@ -71,6 +76,10 @@
     background-color: #c0f3fb;
     appearance: none;
     cursor: pointer;
+}
+
+.yearDropDown option {
+    margin: 0 auto;
 }
 
 .gameFooter {
@@ -84,4 +93,35 @@
 
 .gameFooter a {
     margin: 10px 0;
+}
+
+@media (max-width: 1064px) {
+    .gamePage {
+        width: 65%;
+    }
+
+    .gameFooter {
+        width: 65%;
+    }
+}
+
+@media (max-width: 720px) {
+    .movieCatalogue {
+        height: 75%;
+    }
+    .gamePage {
+        width: 50%;
+    }
+    .gameFooter {
+        width: 50%;
+    }
+}
+
+@media (max-width: 650px) {
+    .gamePage {
+        width: 100%;
+    }
+    .gameFooter {
+        width: 100%;
+    }
 }

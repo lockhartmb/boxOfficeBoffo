@@ -6,8 +6,6 @@ import GamePage from './GamePage.js';
 import CompletedLists from './CompletedLists.js';
 import "./Global.css";
 
-import FinalLists from "./FinalLists";
-
 class App extends Component {
   constructor() {
     super();

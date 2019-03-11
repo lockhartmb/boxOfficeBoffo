@@ -13,7 +13,8 @@ class CurrentList extends Component {
 	constructor() {
 		super();
 		this.state = {
-			items: []
+			items: [],
+			class: 'hide',
 		};
 	}
 
@@ -49,12 +50,27 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
+		if (this.state.items.length === 10) {
+			this.setState ({
+				class: 'show'
+			})
+		}
 		return (
-			<Fragment>
-				<SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />
-				<button className="submitList" onClick={this.handleSubmit}>Submit</button>
-			</Fragment>
-		)
+      <Fragment>
+        <SortableList
+          handleDelete={key => this.handleDelete(key)}
+          items={this.state.items}
+          onSortEnd={this.onSortEnd}
+        />
+        {/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
+        <div className={this.state.class}>
+          <button className="reset btn">reset</button>
+          <button className="confirm btn" onClick={this.handleSubmit}>
+            confirm
+          </button>
+        </div>
+      </Fragment>
+    );
 	}
 }
 
@@ -78,8 +94,8 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
 		<li id={firebaseKey}>
-			{title}
-			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
+			<h2>{title}</h2>
+			<button className="delete" onClick={() => handleDelete(firebaseKey)}><i class="fas fa-minus-circle delete"></i></button>
 		</li>);
 });
 
