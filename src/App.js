@@ -33,8 +33,7 @@ class App extends Component {
           <Route path='/gamepage' render={() => {
             return <GamePage userName={this.state.userName} /> }
           } />
-          <Route path="/completedLists" component={CompletedLists} />
-          {/* <FinalLists/> */}
+          <Route path='/completedlists' component={CompletedLists}/>
         </div>
       </Router>
 
