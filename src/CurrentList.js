@@ -14,7 +14,7 @@ class CurrentList extends Component {
 		super();
 		this.state = {
 			items: [],
-			class: 'show',
+			class: 'hide',
 		};
 	}
 
@@ -30,12 +30,14 @@ class CurrentList extends Component {
 		const dbRef = firebase.database().ref(this.props.userName).child(key);
 		dbRef.remove();
 	}
-  
-	handleSubmit = () => {
 
-		const dbRef = firebase.database().ref('LockedLists');
-		const itemsObject = {...this.state.items}
-		const userObject = {userName: this.props.userName, list: itemsObject}
+	handleSubmit = () => {
+		const dbRef = firebase.database().ref('LockedLists')
+			.set({ list: { key: { key }, title: { movie.title } });
+		/* const dbRef = firebase.database().ref('LockedLists'); */
+		console.log(dbRef)
+		const itemsObject = { ...this.state.items }
+		const userObject = { userName: this.props.userName, list: itemsObject }
 		dbRef.push(userObject);
 	}
 
@@ -50,27 +52,27 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
-		// if (this.state.items.length === 10) {
-		// 	this.setState ({
-		// 		class: 'show'
-		// 	})
-		// }
+		if (this.state.items.length === 10) {
+			this.setState({
+				class: 'show'
+			})
+		}
 		return (
-      <Fragment>
-        <SortableList
-          handleDelete={key => this.handleDelete(key)}
-          items={this.state.items}
-          onSortEnd={this.onSortEnd}
-        />
-        {/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
-        <div className={this.state.class}>
-          <button className="reset btn">reset</button>
-          <button className="confirm btn" onClick={this.handleSubmit}>
-            confirm
+			<Fragment>
+				<SortableList
+					handleDelete={key => this.handleDelete(key)}
+					items={this.state.items}
+					onSortEnd={this.onSortEnd}
+				/>
+				{/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
+				<div className={this.state.class}>
+					<button className="reset btn">reset</button>
+					<button className="confirm btn" onClick={this.handleSubmit}>
+						confirm
           </button>
-        </div>
-      </Fragment>
-    );
+				</div>
+			</Fragment>
+		);
 	}
 }
 
@@ -81,8 +83,8 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 			{items.map((value, index) => {
 				// passing handleDelete function and the firebase key to child components
 				return <Fragment>
-							<SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
-						</Fragment>
+					<SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
+				</Fragment>
 			}
 			)}
 
