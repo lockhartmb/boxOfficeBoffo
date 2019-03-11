@@ -29,7 +29,7 @@ class CurrentList extends Component {
 		const dbRef = firebase.database().ref(this.props.userName).child(key);
 		dbRef.remove();
 	}
-
+  
 	handleSubmit = () => {
 
 		const dbRef = firebase.database().ref('LockedLists');
@@ -50,10 +50,10 @@ class CurrentList extends Component {
 	// passing handleDelete function to child components
 	render() {
 		return (
-			<fragment>
+			<Fragment>
 				<SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />
 				<button className="submitList" onClick={this.handleSubmit}>Submit</button>
-			</fragment>
+			</Fragment>
 		)
 	}
 }
@@ -61,7 +61,7 @@ class CurrentList extends Component {
 const SortableList = SortableContainer(({ items, handleDelete }) => {
 
 	return (
-		<ul className="currentList">
+		<ol className="currentList">
 			{items.map((value, index) => {
 				// passing handleDelete function and the firebase key to child components
 				return <Fragment>
@@ -70,14 +70,13 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 			}
 			)}
 
-		</ul>
+		</ol>
 	);
 });
 
 // the delete button here can now use the handleDelete function and the firebase key that have been passed down
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-
 		<li id={firebaseKey}>
 			{title}
 			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>

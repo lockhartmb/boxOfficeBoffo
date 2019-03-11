@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import GamePage from './GamePage.js';
+// import CompletedLists from './CompletedLists.js';
 import "./Global.css";
 
 import FinalLists from "./FinalLists";
@@ -11,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      userName: 'cool'
+      userName: ''
     }
   }
 

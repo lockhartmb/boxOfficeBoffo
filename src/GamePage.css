@@ -1,49 +1,87 @@
 .gamePage {
     width: 75%;
     float: left;
-    border-top: 80px solid #294b87;
-    border-bottom: 80px solid #294b87;
+    border-top: 80px solid #3080eb;
+    /* border-bottom: 80px solid #3080eb; */
     height: 100vh;
 }
 
 .movieCatalogue {
     overflow: scroll;
-    padding: 40px 20px;
+    width: 90%;
+    padding: 20px;
     height: 80%;
+    margin: 30px auto 0 auto;
 }
 
 .movieCatalogueMovie {
-    width: 25%;
+    min-width: 25%;
+    width: 200px;
     float: left;
-    height: 75%;
+    height: 300px;
     position: relative;
-    object-fit: fill;
+    padding: 20px;
+    object-fit: cover;
     overflow: hidden;
-    padding: 10px;
-    /* margin-bottom: 2%; */
+    margin-bottom: 2%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 50px 40px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7));
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.movieCatalogueMovie:hover .overlay {
+    opacity: 1;
 }
 
 .movieCatalogueMovie button {
     border: none;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     border-radius: 30px;
     text-align: center;
-    background-color: teal;
+    background-color: #c0f3fb;
     font-weight: bold;
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 99;
 }
 
 .yearDropDown {
-    width: 100%;
-    /* background-color: teal; */
+    width: 90%;
+    padding: 10px;
     text-align: center;
+    font-weight: bold;
     border: none;
-    background-color: rgba(0, 128, 128, 0.5);
-    background: url(assets/dropDownArrow.png) right no-repeat;
+    background: url(assets/dropDownArrow.png) 95% no-repeat; /* image came from Google images */
+    background-color: #c0f3fb;
     appearance: none;
     cursor: pointer;
+}
+
+.gameFooter {
+    position: fixed;
+    width: 75%;
+    bottom: 0;
+    font-size: 2rem;
+    background-color: #3080eb;
+    text-align: center;
+}
+
+.gameFooter a {
+    margin: 10px 0;
 }
