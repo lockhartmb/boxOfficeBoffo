@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import Qs from 'qs';
 import firebase from 'firebase';
@@ -9,6 +9,7 @@ import './CurrentList.css';
 import CurrentList from './CurrentList.js';
 import UserArea from './UserArea.js'
 import ResetConfirm from './ResetConfirm'
+import CompletedLists from "./CompletedLists.js";
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -23,7 +24,6 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-            class: 'hide',
             displayList: []
 
         }
@@ -127,9 +127,6 @@ class GamePage extends Component {
 
 
     render() {
-        if (this.state.chosenMovies.length === 10) {
-            this.state.class = 'show'
-        }
         return (
             <Fragment>
                 <section className="gamePage">
@@ -198,11 +195,9 @@ class GamePage extends Component {
                     <div className={this.state.class}>
                         <button className="reset btn">reset</button>
                         <button className="confirm btn">confirm</button>
-                    </div>
-                    
+                    </div>   
                 </div>
             </Fragment>
-
         )
     }
 
