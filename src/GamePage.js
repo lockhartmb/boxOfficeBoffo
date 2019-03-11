@@ -128,101 +128,77 @@ class GamePage extends Component {
 
     render() {
         return (
-          <Fragment>
-            <section className="gamePage">
-              <select
-                className="yearDropDown"
-                onChange={this.handleYear}
-              >
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-                <option value="2013">2013</option>
-                <option value="2012">2012</option>
-                <option value="2011">2011</option>
-                <option value="2010">2010</option>
-                <option value="2009">2009</option>
-                <option value="2008">2008</option>
-              </select>
-              {/* We pass the state of year to the Axios component to modify the search parameters */}
-              <div className="movieCatalogue clearfix">
-                {this.state.results
-                  .filter(movie => {
-                    return movie.poster_path !== null;
-                  })
-                  .map(movie => {
-                    return (
-                      <div
-                        key={movie.id}
-                        className="movieCatalogueMovie"
-                      >
-                        {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
+            <Fragment>
+                <section className="gamePage">
+                <p className="instructions">Select a year and start adding movies to your list.</p>
+                    <select className="yearDropDown" onChange={this.handleYear}>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                    </select>
+                    {/* We pass the state of year to the Axios component to modify the search parameters */}
 
-                        <img
-                          className="movieImage"
-                          src={`http://image.tmdb.org/t/p/w500/${
-                            movie.poster_path
-                          }`}
-                          alt={`Poster for ${movie.title}`}
-                        />
-                        <div className="overlay">
-                          <p>{movie.title}</p>
-                        </div>
 
-                        <button
-                          className="addMovie"
-                          value={movie.title}
-                          onClick={this.addCurrentMovie}
-                        >
-                          <i className="fas fa-plus" />
-                          <span className="visuallyHidden">
-                            Add movie to list
-                          </span>
-                        </button>
-                      </div>
-                    );
-                  })}
-              </div>{" "}
-              {/* end of movieCatalogue div*/}
-              <footer className="gameFooter clearfix">
-                <Link to="/" className="homeButton">
-                  <i class="fas fa-home" />
-                  <span className="visuallyHidden">Home Icon</span>
-                </Link>
-                <Link to="/" className="homeButton">
-                  <i className="fas fa-plus" />
-                  <span className="visuallyHidden">Add new list</span>
-                </Link>
+                    <div className="movieCatalogue clearfix">
+                        {this.state.results.filter(movie => {
+                            return movie.poster_path !== null;
+                        }).map(movie => {
 
-                <Link
-                  to="/completedLists"
-                  className="allListsButton"
-                >
-                  <i class="fas fa-list-ul" />
-                  <span className="visuallyHidden">
-                    Completed Lists
-                  </span>
-                </Link>
-              </footer>
-            </section>
+                            return (
+                                <div key={movie.id} className="movieCatalogueMovie">
+                                    {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
-            <div className="currentListContainer">
-              <UserArea
-                className="float"
-                userName={this.props.userName}
-              />
-              <CurrentList
-                chosenMovies={this.state.chosenMovies}
-                userName={this.props.userName}
-                className="float"
-              />
-              {/* <ResetConfirm className={this.state.class}/> */}
-            </div>
-          </Fragment>
-        );
+                                    <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                    <div className="overlay">
+                                        <p>{movie.title}</p>
+                                    </div>
+
+                                    <button className="addMovie" value={movie.title} onClick={this.addCurrentMovie} >
+                                        <i className="fas fa-plus"></i>
+                                        <span className="visuallyHidden">Add movie to list</span>
+                                    </button>
+
+                                </div>
+                            )
+                        })
+                        }
+                    </div> {/* end of movieCatalogue div*/}
+                    <footer className="gameFooter clearfix">
+                        <Link to="/" className="homeButton">
+                            <i class="fas fa-home"></i>
+                            <span className="visuallyHidden">Home Icon</span>
+                        </Link>
+                        <Link to="/completedLists" className="allListsButton">
+                            <i class="fas fa-list-ul"></i>
+                            <span className="visuallyHidden">Completed Lists</span>
+                        </Link>
+                        <Link to="/" className="homeButton">
+                            <i class="fas fa-question"></i>
+                            <span className="visuallyHidden">More info</span>
+                        </Link>
+                    </footer>
+                </section>
+
+                <div className="currentListContainer">
+                    <UserArea className="float" userName={this.props.userName} />
+                    <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} className="float" />
+                    {/* <ResetConfirm className={this.state.class}/> */}
+                    <div className={this.state.class}>
+                        <button className="reset btn">reset</button>
+                        <button className="confirm btn">confirm</button>
+                    </div>   
+                </div>
+            </Fragment>
+        )
     }
 
 }
