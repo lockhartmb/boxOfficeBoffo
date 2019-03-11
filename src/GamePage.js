@@ -129,7 +129,7 @@ class GamePage extends Component {
         return (
             <Fragment>
                 <section className="gamePage">
-                <p className="instructions">Select a year and start adding movies to your list.</p>
+                    <p className="instructions">Select a year and start adding movies to your list.</p>
                     <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>

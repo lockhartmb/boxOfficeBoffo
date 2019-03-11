@@ -9,7 +9,7 @@ class LandingPage extends Component {
     constructor() {
         super();
         this.state = {
-            
+
         }
     }
 
@@ -18,13 +18,14 @@ class LandingPage extends Component {
             <section className="landingPage">
                 <div className="contentContainer">
                     <div className="logo">
-                        <img src={boffoLogo} className="logo"alt=""/>
+                        <img src={boffoLogo} className="logo" alt="" />
                     </div>
                     <h1 >Welcome to Box Office Boffo!</h1>
                     <p>Make a list of what you predict will be the top 10 grossing summer blockbusters and see how you match up!</p>
-                 {/*link to the gamepage*/}
+                    {/*link to the gamepage*/}
                     <label htmlFor="name" className="visuallyHidden">Name</label>
-                    <input className="inputName" type="text" placeholder="Give your list a unique name" htmlFor="name" name="name" onChange={this.props.handleChange} value={this.props.userName} id="name" required/>
+                    <input className="inputName" type="text" placeholder="Give your list a unique name" htmlFor="name" name="name" onChange={this.props.handleChange} value={this.props.userName} id="name" required />
+                    <p>{this.props.alertParagraph}</p>
                     <Link to="gamepage" className="startButton">Play</Link>
                 </div>
                 <footer className="landingFooter clearfix">
