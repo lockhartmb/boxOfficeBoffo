@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
-import firebase from './firebase';
+import firebase from 'firebase';
 import './GamePage.css';
 import './Global.css';
 import CurrentList from './CurrentList.js';
@@ -19,8 +19,7 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-
-
+            displayList: []
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -119,14 +118,6 @@ class GamePage extends Component {
             })
         }
     }
-
-
-    /* renderButton = (event) => {
-
-        
-        else
-    } */
-
 
     render() {
         return (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
-import { render } from 'react-dom';
 import "./CurrentList.css";
 import "./Global.css";
 import {
@@ -32,12 +31,11 @@ class CurrentList extends Component {
 
 	handleSubmit = () => {
 
-		const dbRef = firebase.database().ref(this.props.userName);
-		console.log(dbRef)
-		dbRef.push(this.state.items);
+		const dbRef = firebase.database().ref('LockedLists');
+		const itemsObject = {...this.state.items}
+		const userObject = {userName: this.props.userName, list: itemsObject}
+		dbRef.push(userObject);
 	}
-
-
 
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
@@ -77,7 +75,7 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 // the delete button here can now use the handleDelete function and the firebase key that have been passed down
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-		<li id={firebaseKey} key={firebaseKey}>
+		<li id={firebaseKey}>
 			{title}
 			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
 		</li>);
