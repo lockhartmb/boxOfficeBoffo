@@ -1,7 +1,128 @@
-.currentList {
-    width: 25%;
-    float: left;
-    border-top: 80px solid #58728d;
-    border-bottom: 80px solid #58728d;
+.currentListContainer {
     min-height: 100vh;
+    width: 25%;
+    border: 1px solid blue;
+    border-bottom: 80px solid #204470;
+    position: relative;
+    float: left;
+    background: rgb(139, 217, 241);
+    z-index: -10;
+}
+
+/* .currentListContainer::after {
+    content: '';
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgb(115, 181, 201)); 
+    opacity: .5; 
+    height: 50px;
+    width: 80%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+
+}   */
+
+.currentList {
+    margin: 0 auto;
+    height: 55%;
+    width: 80%;
+    position: absolute;
+    top: 0; 
+    right: 0; 
+    left: 0;
+    bottom: 0;
+    overflow: scroll;
+    z-index: -1;
+    transform: translateY(60%);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(115, 181, 201, .2));
+    border-radius: 30px;
+    /* border: 1px solid yellow; */
+}
+
+li {
+    /* border: 1px solid red; */
+    margin: 5% 0;
+    height: 55px;
+    position: relative;
+    border-radius: 30px;
+    background: white;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+.delete {
+    margin: 0 auto;
+    width: 35px;
+    height: 35px;
+    float: right;
+    font-size: .7rem;
+    border-radius: 30px;
+    position: absolute;
+    top: 15%;
+    right: 5%;
+    bottom: 0;
+    box-shadow: 0;
+    border: 0;
+    color: rgb(230, 75, 75);
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    /* border: 1px solid red; */
+}
+
+h2 {
+    width: 75%;
+    height: 50%;
+    padding-left: 10%;
+    font-family: 'Lato', sans-serif;
+    font-size: .7rem;
+    float: left;
+    text-align: left;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    bottom: 0;
+    display: inline-block; 
+}
+
+.btnContainer {
+    width: 60%;
+    /* border: 1px solid red; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3%;
+    margin: 0 auto;
+}
+
+.btn {
+    
+    width: 40%;
+    height: 30px;
+    font-size: .5rem;
+    color: white;
+    border-radius: 25px;
+    border: none;
+    box-shadow: rgb(61, 61, 61) 1px 1px 5px;
+}
+.reset {
+    background: black;
+    float: left;
+}
+
+.confirm {
+    background: #2a63f2;
+    float: right;
+}
+
+.hide {
+    display: none;
+    border: 1px solid red;
+}
+
+.show {
+    display: block;
 }

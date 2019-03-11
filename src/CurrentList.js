@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
 import { render } from 'react-dom';
 import "./CurrentList.css";
@@ -28,15 +28,10 @@ class CurrentList extends Component {
 	handleDelete = (key) => {
 
 
-
-
-
 		const dbRef = firebase.database().ref(this.props.userName).child(key);
 		console.log(dbRef);
 		dbRef.remove();
 	}
-
-
 
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
@@ -60,7 +55,9 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 		<ul className="currentList">
 			{items.map((value, index) => {
 				// passing handleDelete function and the firebase key to child components
-				return <SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
+				return <Fragment>
+							<SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
+						</Fragment>
 			}
 			)}
 		</ul>
@@ -71,8 +68,8 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
 		<li id={firebaseKey} key={firebaseKey}>
-			{title}
-			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
+			<h2>{title}</h2>
+			<button className="delete" onClick={() => handleDelete(firebaseKey)}><i class="fas fa-minus-circle delete"></i></button>
 		</li>);
 });
 

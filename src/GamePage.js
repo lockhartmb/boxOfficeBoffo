@@ -4,7 +4,10 @@ import Qs from 'qs';
 import firebase from './firebase';
 import './GamePage.css';
 import './Global.css';
+import './CurrentList.css';
 import CurrentList from './CurrentList.js';
+import UserArea from './UserArea.js'
+import ResetConfirm from './ResetConfirm'
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -19,8 +22,7 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-
-
+            class: 'hide'
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -127,8 +129,10 @@ class GamePage extends Component {
         else
     } */
 
-
     render() {
+        if (this.state.chosenMovies.length === 10) {
+            this.state.class = 'show'
+        }
         return (
             <Fragment>
                 <section className="gamePage">
@@ -161,7 +165,7 @@ class GamePage extends Component {
                                     {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                     <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                    <button value={movie.title} onClick={this.addCurrentMovie} >
+                                    <button value={movie.title} onClick={this.addCurrentMovie}>
                                         <i className="fas fa-plus"></i>
                                         <span className="visuallyHidden">Add movie to list</span>
                                     </button>
@@ -174,7 +178,16 @@ class GamePage extends Component {
                     {/* we give the chosenMovies to CurrentList Component as a props */}
 
                 </section>
-                <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} />
+                <div className="currentListContainer">
+                    <UserArea className="float" userName={this.props.userName} />
+                    <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} className="float" />
+                    {/* <ResetConfirm className={this.state.class}/> */}
+                    <div className={this.state.class}>
+                        <button className="reset btn">reset</button>
+                        <button className="confirm btn" >confirm</button>
+                    </div>
+                    
+                </div>
             </Fragment>
 
         )
