@@ -2,10 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Qs from 'qs';
-import firebase from './firebase';
+import firebase from 'firebase';
 import './GamePage.css';
 import './Global.css';
+import './CurrentList.css';
 import CurrentList from './CurrentList.js';
+import UserArea from './UserArea.js'
+import ResetConfirm from './ResetConfirm'
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -20,7 +23,8 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-
+            class: 'hide',
+            displayList: []
 
         }
     }
@@ -122,14 +126,10 @@ class GamePage extends Component {
     }
 
 
-    /* renderButton = (event) => {
-
-        
-        else
-    } */
-
-
     render() {
+        if (this.state.chosenMovies.length === 10) {
+            this.state.class = 'show'
+        }
         return (
             <Fragment>
                 <section className="gamePage">
@@ -163,6 +163,7 @@ class GamePage extends Component {
                                     <div className="overlay">
                                         <p>{movie.title}</p>
                                     </div>
+
                                     <button className="addMovie" value={movie.title} onClick={this.addCurrentMovie} >
                                         <i className="fas fa-plus"></i>
                                         <span className="visuallyHidden">Add movie to list</span>
@@ -190,8 +191,16 @@ class GamePage extends Component {
                     </footer>
                 </section>
 
-                {/* we give the chosenMovies and userName to CurrentList Component as a props */}
-                <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} />
+                <div className="currentListContainer">
+                    <UserArea className="float" userName={this.props.userName} />
+                    <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} className="float" />
+                    {/* <ResetConfirm className={this.state.class}/> */}
+                    <div className={this.state.class}>
+                        <button className="reset btn">reset</button>
+                        <button className="confirm btn" >confirm</button>
+                    </div>
+                    
+                </div>
             </Fragment>
 
         )
