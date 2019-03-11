@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
-import firebase from './firebase';
+import firebase from 'firebase';
 import './GamePage.css';
 import './Global.css';
 import './CurrentList.css';
@@ -22,7 +22,9 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-            class: 'hide'
+            class: 'hide',
+            displayList: []
+
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -123,12 +125,6 @@ class GamePage extends Component {
     }
 
 
-    /* renderButton = (event) => {
-
-        
-        else
-    } */
-
     render() {
         if (this.state.chosenMovies.length === 10) {
             this.state.class = 'show'
@@ -165,7 +161,8 @@ class GamePage extends Component {
                                     {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
                                     <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                    <button value={movie.title} onClick={this.addCurrentMovie}>
+
+                                    <button className="addMovie" value={movie.title} onClick={this.addCurrentMovie} >
                                         <i className="fas fa-plus"></i>
                                         <span className="visuallyHidden">Add movie to list</span>
                                     </button>

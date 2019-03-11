@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
-import { render } from 'react-dom';
 import "./CurrentList.css";
 import "./Global.css";
 import {
@@ -27,12 +26,17 @@ class CurrentList extends Component {
 	// need to figure out how to delete only one movie from the list ie. .child() but for now it is deleting the whole list
 	handleDelete = (key) => {
 
-
 		const dbRef = firebase.database().ref(this.props.userName).child(key);
-		console.log(dbRef);
 		dbRef.remove();
 	}
 
+	handleSubmit = () => {
+
+		const dbRef = firebase.database().ref('LockedLists');
+		const itemsObject = {...this.state.items}
+		const userObject = {userName: this.props.userName, list: itemsObject}
+		dbRef.push(userObject);
+	}
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
 	componentDidUpdate(prevProps) {
@@ -45,7 +49,12 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
-		return <SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />;
+		return (
+			<fragment>
+				<SortableList handleDelete={(key) => this.handleDelete(key)} items={this.state.items} onSortEnd={this.onSortEnd} />
+				<button className="submitList" onClick={this.handleSubmit}>Submit</button>
+			</fragment>
+		)
 	}
 }
 
@@ -60,6 +69,7 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 						</Fragment>
 			}
 			)}
+
 		</ul>
 	);
 });
@@ -67,9 +77,10 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 // the delete button here can now use the handleDelete function and the firebase key that have been passed down
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-		<li id={firebaseKey} key={firebaseKey}>
-			<h2>{title}</h2>
-			<button className="delete" onClick={() => handleDelete(firebaseKey)}><i class="fas fa-minus-circle delete"></i></button>
+
+		<li id={firebaseKey}>
+			{title}
+			<button onClick={() => handleDelete(firebaseKey)}>Delete</button>
 		</li>);
 });
 
