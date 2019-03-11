@@ -18,11 +18,12 @@ class CompletedLists extends Component {
 
         dbRef.on('value', response => {
             const dataFromFirebase = response.val();
+            // console.log(dataFromFirebase)
             
             // making an empty array to store all of our Firebase info in, because it originally comes back to us as an object
             const newStateAllTheMovieInfo = [];
 
-            // for each node in the firebase object, we want to get the userName and that user's list and save them as variables
+        //     // for each node in the firebase object, we want to get the userName and that user's list and save them as variables
             for (let key in dataFromFirebase) {
                 let userName = dataFromFirebase[key].userName;
                 let userList = dataFromFirebase[key].list;
@@ -39,7 +40,6 @@ class CompletedLists extends Component {
                 newStateAllTheMovieInfo: newStateAllTheMovieInfo
             })
         })
-
     }
 
     render() {

@@ -25,7 +25,6 @@ class GamePage extends Component {
             clickedMovie: '',
             chosenMovies: [],
             displayList: []
-
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -192,10 +191,6 @@ class GamePage extends Component {
                     <UserArea className="float" userName={this.props.userName} />
                     <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} className="float" />
                     {/* <ResetConfirm className={this.state.class}/> */}
-                    <div className={this.state.class}>
-                        <button className="reset btn">reset</button>
-                        <button className="confirm btn">confirm</button>
-                    </div>   
                 </div>
             </Fragment>
         )
