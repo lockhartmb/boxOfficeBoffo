@@ -19,6 +19,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 html {
     font-size: 125%;
+    height: 100%;
 }
 
 img {

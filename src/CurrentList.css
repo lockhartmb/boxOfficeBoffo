@@ -126,3 +126,21 @@ h2 {
 .show {
     display: block;
 }
+
+@media (max-width: 1064px) {
+    .currentListContainer {
+        width: 35%;
+    }
+}
+
+@media (max-width: 720px) {
+   .currentListContainer {
+        width: 50%;
+    }
+}
+
+@media (max-width: 650px) {
+    .currentListContainer {
+        width: 100%;
+    }
+}

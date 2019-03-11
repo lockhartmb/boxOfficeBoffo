@@ -133,6 +133,7 @@ class GamePage extends Component {
         return (
             <Fragment>
                 <section className="gamePage">
+                <p className="instructions">Select a year and start adding movies to your list.</p>
                     <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
@@ -179,14 +180,13 @@ class GamePage extends Component {
                             <i class="fas fa-home"></i>
                             <span className="visuallyHidden">Home Icon</span>
                         </Link>
-                        <Link to="/" className="homeButton">
-                            <i className="fas fa-plus"></i>
-                            <span className="visuallyHidden">Add new list</span>
-                        </Link>
-
                         <Link to="/completedLists" className="allListsButton">
                             <i class="fas fa-list-ul"></i>
                             <span className="visuallyHidden">Completed Lists</span>
+                        </Link>
+                        <Link to="/" className="homeButton">
+                            <i class="fas fa-question"></i>
+                            <span className="visuallyHidden">More info</span>
                         </Link>
                     </footer>
                 </section>
