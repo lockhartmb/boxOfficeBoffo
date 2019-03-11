@@ -5,6 +5,8 @@ import LandingPage from './LandingPage.js';
 import GamePage from './GamePage.js';
 import "./Global.css";
 
+import FinalLists from "./FinalLists";
+
 class App extends Component {
   constructor() {
     super();
@@ -31,7 +33,8 @@ class App extends Component {
           {/* URL path to go to the game page. This route is also sending the userName state to the GamePage component*/}
           <Route path='/gamepage' render={() => {
             return <GamePage userName={this.state.userName} /> }
-          } />
+          } /> 
+          <FinalLists/>
         </div>
       </Router>
 
