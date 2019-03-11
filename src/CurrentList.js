@@ -14,7 +14,7 @@ class CurrentList extends Component {
 		super();
 		this.state = {
 			items: [],
-			class: 'hide',
+			class: 'show',
 		};
 	}
 
@@ -50,11 +50,11 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
-		if (this.state.items.length === 10) {
-			this.setState ({
-				class: 'show'
-			})
-		}
+		// if (this.state.items.length === 10) {
+		// 	this.setState ({
+		// 		class: 'show'
+		// 	})
+		// }
 		return (
       <Fragment>
         <SortableList
