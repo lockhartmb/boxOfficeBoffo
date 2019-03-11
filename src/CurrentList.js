@@ -51,7 +51,9 @@ class CurrentList extends Component {
 	// passing handleDelete function to child components
 	render() {
 		if (this.state.items.length === 10) {
-			this.state.class = 'show'
+			this.setState ({
+				class: 'show'
+			})
 		}
 		return (
       <Fragment>

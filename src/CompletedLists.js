@@ -6,9 +6,8 @@ class CompletedLists extends Component {
     constructor() {
         super();
         this.state = {
-            something: false,
             displayList: [],
-            usersLists: []
+            userLists: []
         };
     }
 
@@ -38,23 +37,24 @@ class CompletedLists extends Component {
 
 componentDidMount() {
     
-        const dbRef = firebase.database().ref('LockedLists')
-        const listArray = []
+        let dbRef = firebase.database().ref('LockedLists')
+        let listArray = []
         // console.log(dbRef)
         dbRef.on('value', listObject => {
             const moviesFromFirebase = listObject.val()
             for (let key in moviesFromFirebase) {
                 listArray.push({
-                    key: moviesFromFirebase[key]
+                    FinalList: moviesFromFirebase[key]
                 });
             }
-            console.log(listArray)
-            this.setState({
-                userList: listArray
+            // this.setState({
+                //     userLists: listArray
+                // })
+                
+                // this.getListData()
+                // console.log('after state',this.state.userLists);
             })
-            // this.getListData()
-            // console.log('after state',this.state.displayList);
-        })
+            listArray.map()
         // console.log(listArray) 
 
 
