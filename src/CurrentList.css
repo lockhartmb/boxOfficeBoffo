@@ -32,6 +32,15 @@
     position: relative;
     border-radius: 30px;
     background: white;
+    list-style: none;
+}
+
+.listNumber {
+    list-style: decimal;
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    font-size: .7rem;
 }
 
 .currentListItem:last-child {
