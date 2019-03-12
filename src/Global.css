@@ -32,9 +32,9 @@ h1 {
     font-family: 'Judson', serif;
 }
 
-li {
+/* li {
     list-style: none;
-}
+} */
 
 .float {
     float: left;

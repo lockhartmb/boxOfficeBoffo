@@ -11,6 +11,7 @@ import UserArea from './UserArea.js'
 import ResetConfirm from './ResetConfirm'
 import CompletedLists from "./CompletedLists.js";
 import Modal from './Modal.js';
+import swal from 'sweetalert'
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -104,14 +105,40 @@ class GamePage extends Component {
     }
 
     addCurrentMovie = async (event) => {
+
         event.preventDefault();
+
         let numberOfMovies = this.state.chosenMovies.length;
+
         const canAddMovies = numberOfMovies < 10;
-        // console.log(canAddMovies)
-        if (canAddMovies) {
+
+        console.log(this.state.chosenMovies)
+
+        let duplicatedMovie = false
+
+        this.state.chosenMovies.forEach((movie) => {
+
+            if (event.target.value === movie.title) {
+
+                duplicatedMovie = true;
+
+                swal("You already have this movie, please choose a new one!");
+
+            }
+
+        })
+
+        if (canAddMovies === false) {
+
+            swal("You already have 10 movies, please submit your list or delete a movie!");
+
+        }
+
+        console.log(duplicatedMovie)
+
+        if (canAddMovies && duplicatedMovie === false) {
             const dbRef = firebase.database().ref(this.props.userName);
             const data = event.target.value;
-
             dbRef.push(data);
             // we get this informations from the click and set the state of that clicked movie
             await this.setState({
@@ -122,22 +149,39 @@ class GamePage extends Component {
             //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
             dbRef.on('value', response => {
                 const moviesFromFirebase = response.val();
+
                 const getMoviesBack = []
+
                 // console.log(moviesFromFirebase)
+
                 // console.log('Key in Data Value', dataVal.key)
+
                 for (let key in moviesFromFirebase) {
+
                     getMoviesBack.push({
+
                         key: key,
+
                         title: moviesFromFirebase[key]
+
                     });
+
                 }
+
                 // console.log(getMoviesBack);
+
                 this.setState({
+
                     chosenMovies: getMoviesBack
+
                 })
+
             })
         }
     }
+
+
+
 
 
     render() {

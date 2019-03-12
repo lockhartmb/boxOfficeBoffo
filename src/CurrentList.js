@@ -34,6 +34,7 @@ class CurrentList extends Component {
 	}
 
 	handleSubmit = (key, title) => {
+
 		swal({
 			title: "You've locked in your choices",
 			text: "Check the Completed Lists page to compare your predictions!",
@@ -41,6 +42,7 @@ class CurrentList extends Component {
 			button: "Awesome!",
 			dangerMode: true,
 		})
+
 		// const dbRef = firebase.database().ref('LockedLists')
 		// .set({ list: { key: { key }, title: { title } } });
 		const dbRef = firebase.database().ref('LockedLists');
@@ -121,7 +123,6 @@ const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 			</div>
 		</Fragment>
 	);
-
 });
 
 // render(<CurrentList />, document.getElementById('root'));
