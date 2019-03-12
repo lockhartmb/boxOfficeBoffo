@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
 import "./Global.css";
+import "./CompletedLists.css"
 
 class CompletedLists extends Component {
     constructor() {
@@ -48,12 +49,12 @@ class CompletedLists extends Component {
             <Fragment className="completedLists">
                 <h2>All the completed lists</h2>
                 {/* ul of alllll the lists */}
-                <ul className="allTheLists">
+                <ul className="allTheLists" id="userLists">
                     {
                         // for each user, print the userName as a title
                         this.state.newStateAllTheMovieInfo.map((user, index) => {
                             return (
-                                <li key={index}>
+                                <li key={index} id="listBox">
                                     <h3>{user.userName}</h3>
                                     <ol>
                                         {

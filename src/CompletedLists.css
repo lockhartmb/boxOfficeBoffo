@@ -1,0 +1,9 @@
+#userLists {
+    height: inherit
+}
+
+#listBox {
+    border: 2px solid red;
+    height: inherit;
+    width: calc(100% / 3)
+}
