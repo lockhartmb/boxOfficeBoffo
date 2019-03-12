@@ -10,7 +10,7 @@ class UserArea extends Component {
         return(
             <div className="userArea">
                 <img className="boffoLogo clear" src={boffoLogo} alt=""/>
-                <p className="user">Username: {this.props.userName}</p>
+                <p className="user">{this.props.userName}</p>
             </div>
         )
     }
