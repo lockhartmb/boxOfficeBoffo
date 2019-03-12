@@ -71,7 +71,8 @@ footer i {
 }
 
 footer a {
-    margin: 30px 0;
+    /* margin: 30px 0; */
+    /* padding: 20px 0; */
     float: left;
     width: calc(100% / 3);
     text-transform: uppercase;
@@ -82,6 +83,17 @@ footer a {
 footer p {
     font-size: 1rem;
 }
+
+.homeButton{
+    margin: 0;
+    padding: 13px 0;
+    transition: background .2s ease;
+}
+
+.homeButton:hover {
+    background: #3e6da7;
+}
+
 
 @media (max-width: 970px) {
     .contentContainer h1 {

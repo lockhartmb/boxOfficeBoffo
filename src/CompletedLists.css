@@ -1,0 +1,14 @@
+.completedLists {
+    width: 50%;
+    border: 1px solid red;
+}
+
+.userList {
+    padding: 0;
+    margin: 0;
+}
+
+li.userListItem {
+    margin: 0;
+}
+

@@ -176,7 +176,7 @@ class GamePage extends Component {
                             <i class="fas fa-home"></i>
                             <span className="visuallyHidden">Home Icon</span>
                         </Link>
-                        <Link to="/completedLists" className="allListsButton">
+                        <Link to="/completedLists" className="allListsButton homeButton">
                             <i class="fas fa-list-ul"></i>
                             <span className="visuallyHidden">Completed Lists</span>
                         </Link>
@@ -195,7 +195,6 @@ class GamePage extends Component {
             </Fragment>
         )
     }
-
 }
 export default GamePage;
 //user click on a movie to add to his list
