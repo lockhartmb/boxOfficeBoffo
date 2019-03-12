@@ -72,7 +72,7 @@
     font-weight: bold;
     border: none;
     background: url(assets/dropDownArrow.png) 95% no-repeat; /* image came from Google images */
-    background-color:rgb(139,217,241);
+    background-color:#c0f3fb;
     appearance: none;
     cursor: pointer;
     /* transition: all .5s ease; */
