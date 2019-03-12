@@ -25,8 +25,9 @@ class LandingPage extends Component {
                     {/*link to the gamepage*/}
                     <label htmlFor="name" className="visuallyHidden">Name</label>
                     <input className="inputName" type="text" placeholder="Give your list a unique name" htmlFor="name" name="name" onChange={this.props.handleChange} value={this.props.userName} id="name" required />
-                    <p>{this.props.alertParagraph}</p>
-                    <Link to="gamepage" className="startButton">Play</Link>
+                    <p>{this.props.duplicateError}</p>
+                    <p>{this.props.nothingError}</p>
+                    <Link to="gamepage" className={this.props.class}>Play</Link>
                 </div>
                 <footer className="landingFooter clearfix">
                     <Link to="/" className="homeButton">
