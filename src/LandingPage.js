@@ -28,6 +28,18 @@ class LandingPage extends Component {
     render() {
         return (
             <section className="landingPage">
+                <div>
+                    {this.state.isShowing ?
+                        <div onClick={this.closeModalHandler} className="backDrop"></div> :
+                        null}
+
+                    <Modal
+                        className="modal"
+                        show={this.state.isShowing}
+                        close={this.closeModalHandler}>
+                        Need some more info?
+                        </Modal>
+                </div>
                 <div className="contentContainer">
                     <div className="logo">
                         <img src={boffoLogo} className="logo" alt="" />
@@ -52,27 +64,12 @@ class LandingPage extends Component {
                         <p>Completed Lists</p>
                         <span className="visuallyHidden">Completed Lists</span>
                     </Link>
-                    {/* <Link to="/help" className="helpButton homeButton">
-                        
-                    </Link> */}
-                    <div>
-                        {this.state.isShowing ? 
-                        <div onClick={this.closeModalHandler} className="back-drop"></div> : 
-                        null}
+                    <button className="helpButton homeButton" onClick={this.openModalHandler}>
+                        <i class="fas fa-question"></i>
+                        <p>Help</p>
+                        <span className="visuallyHidden">More info</span>
+                    </button>
 
-                        <button className="helpButton homeButton" onClick={this.openModalHandler}>
-                            <i class="fas fa-question"></i>
-                            <p>Help</p>
-                            <span className="visuallyHidden">More info</span>
-                        </button>
-
-                        <Modal
-                            className="modal"
-                            show={this.state.isShowing}
-                            close={this.closeModalHandler}>
-                            Need some more info?
-                        </Modal>
-                    </div>
                 </footer>
             </section>
         )
