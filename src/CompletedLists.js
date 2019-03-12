@@ -6,7 +6,8 @@ class CompletedLists extends Component {
     constructor() {
         super();
         this.state = {
-            newStateAllTheMovieInfo: []
+            newStateAllTheMovieInfo: [],
+            keys: []
         };
     }
     
@@ -18,18 +19,19 @@ class CompletedLists extends Component {
 
         dbRef.on('value', response => {
             const dataFromFirebase = response.val();
-            // console.log(dataFromFirebase)
             
             // making an empty array to store all of our Firebase info in, because it originally comes back to us as an object
             const newStateAllTheMovieInfo = [];
 
         //     // for each node in the firebase object, we want to get the userName and that user's list and save them as variables
             for (let key in dataFromFirebase) {
+                let keys = dataFromFirebase[key];
                 let userName = dataFromFirebase[key].userName;
                 let userList = dataFromFirebase[key].list;
 
                 // we then push that information to the empty array that we set up earlier
                 newStateAllTheMovieInfo.push({
+                    key: key,
                     userName: userName,
                     userList: userList
                 })
@@ -42,18 +44,31 @@ class CompletedLists extends Component {
         })
     }
 
+    handleDelete = (key) => {
+
+        const dbRef = firebase.database().ref('LockedLists').child(key);
+        dbRef.remove();
+        // console.log(dbRef);
+    }
+
     render() {
+
         return (
 
-            <Fragment className="completedLists">
+            <div className="completedLists">
                 <h2>All the completed lists</h2>
                 {/* ul of alllll the lists */}
                 <ul className="allTheLists">
                     {
-                        // for each user, print the userName as a title
+
+                        
+                    // for each user, print the userName as a title
                         this.state.newStateAllTheMovieInfo.map((user, index) => {
+                            
+                            // console.log(user.keys);
                             return (
-                                <li key={index}>
+                                <li key={index} id={user.key}>
+                                
                                     <h3>{user.userName}</h3>
                                     <ol>
                                         {
@@ -65,12 +80,13 @@ class CompletedLists extends Component {
                                             })
                                         }
                                     </ol>
+                                    <button onClick={() => this.handleDelete(user.key)}>delete</button>
                                 </li>
                             )
                         })
                     }
                 </ul>
-            </Fragment>
+            </div>
         )
     }
 }

@@ -3,14 +3,26 @@ import { Link } from 'react-router-dom';
 import boffoLogo from './assets/boffoLogo.svg';
 import './LandingPage.css'
 import './Global.css'
-
+import Modal from './Modal.js';
 
 class LandingPage extends Component {
     constructor() {
         super();
         this.state = {
-
+            isShowing: false
         }
+    }
+
+    openModalHandler = () => {
+        this.setState({
+            isShowing: true
+        });
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            isShowing: false
+        });
     }
 
     render() {
@@ -40,11 +52,27 @@ class LandingPage extends Component {
                         <p>Completed Lists</p>
                         <span className="visuallyHidden">Completed Lists</span>
                     </Link>
-                    <Link to="/" className="homeButton">
-                        <i class="fas fa-question"></i>
-                        <p>Help</p>
-                        <span className="visuallyHidden">More info</span>
-                    </Link>
+                    {/* <Link to="/help" className="helpButton homeButton">
+                        
+                    </Link> */}
+                    <div>
+                        {this.state.isShowing ? 
+                        <div onClick={this.closeModalHandler} className="back-drop"></div> : 
+                        null}
+
+                        <button className="helpButton homeButton" onClick={this.openModalHandler}>
+                            <i class="fas fa-question"></i>
+                            <p>Help</p>
+                            <span className="visuallyHidden">More info</span>
+                        </button>
+
+                        <Modal
+                            className="modal"
+                            show={this.state.isShowing}
+                            close={this.closeModalHandler}>
+                            Need some more info?
+                        </Modal>
+                    </div>
                 </footer>
             </section>
         )

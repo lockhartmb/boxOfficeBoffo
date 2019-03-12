@@ -88,11 +88,11 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 	return (
 		<ol className="currentList">
 			{items.map((value, index) => {
+				console.log(value);
 				// passing handleDelete function and the firebase key to child components
 				return 	<Fragment>
 							<SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
 						</Fragment>
-				
 					}
 				)}
 		</ol>
@@ -102,6 +102,7 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 
 // the delete button here can now use the handleDelete function and the firebase key that have been passed down
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
+	console.log(firebaseKey);
 	return (
 		<li id={firebaseKey} class="currentListItem">
 			<h2>{title}</h2>
