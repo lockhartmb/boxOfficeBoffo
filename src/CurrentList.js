@@ -32,9 +32,9 @@ class CurrentList extends Component {
 	}
 
 	handleSubmit = (key, title) => {
-		const dbRef = firebase.database().ref('LockedLists')
-			.set({ list: { key: { key }, title: { title } } });
-		/* const dbRef = firebase.database().ref('LockedLists'); */
+		// const dbRef = firebase.database().ref('LockedLists')
+			// .set({ list: { key: { key }, title: { title } } });
+		const dbRef = firebase.database().ref('LockedLists');
 		console.log(dbRef)
 		const itemsObject = { ...this.state.items }
 		const userObject = { userName: this.props.userName, list: itemsObject }
