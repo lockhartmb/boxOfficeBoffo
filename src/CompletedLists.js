@@ -21,7 +21,6 @@ class CompletedLists extends Component {
 
         dbRef.on('value', response => {
             const dataFromFirebase = response.val();
-
             // making an empty array to store all of our Firebase info in, because it originally comes back to us as an object
             const newStateAllTheMovieInfo = [];
 
