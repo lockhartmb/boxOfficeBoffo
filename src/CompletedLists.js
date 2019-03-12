@@ -1,6 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from './firebase';
 import "./Global.css";
+import "./CompletedLists.css"
 
 class CompletedLists extends Component {
     constructor() {
@@ -56,9 +58,11 @@ class CompletedLists extends Component {
         return (
 
             <div className="completedLists">
-                <h2>All the completed lists</h2>
+
+                <h2 id="completedListsTitle">Compare your Predictions!</h2>
+
                 {/* ul of alllll the lists */}
-                <ul className="allTheLists">
+                <ul className="clearfix" id="userLists">
                     {
 
                         
@@ -67,29 +71,40 @@ class CompletedLists extends Component {
                             
                             // console.log(user.keys);
                             return (
+
                                 <li key={index} id={user.key}>
                                 
                                     <h3>{user.userName}</h3>
+
                                     <ol>
                                         {
                                             // for each user, print all that user's movies
                                             user.userList.map((movie, index) => {
                                                 return (
-                                                    <li key={index}>{movie.title}</li>
+                                                    <li key={index} id="moviesList"><span>{movie.title}</span></li>
                                                 )
                                             })
                                         }
                                     </ol>
+
                                     <button onClick={() => this.handleDelete(user.key)}>delete</button>
+
                                 </li>
                             )
                         })
                     }
                 </ul>
+
+                <footer className="listsFooter">
+                    <Link to="/" className="homeButton">
+                        <i class="fas fa-home"></i>
+                        <span className="visuallyHidden">Home Icon</span>
+                    </Link>
+                </footer>
+
             </div>
         )
     }
 }
-
 
 export default CompletedLists;
