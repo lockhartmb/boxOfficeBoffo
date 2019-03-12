@@ -60,7 +60,8 @@ class CurrentList extends Component {
 		
 
 		return (
-			<Fragment>
+			<Fragment >
+				<h3 className="currentListTitle">Order Your List!</h3>
 				<SortableList
 					handleDelete={key => this.handleDelete(key)}
 					items={this.state.items}

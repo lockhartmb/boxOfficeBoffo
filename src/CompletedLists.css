@@ -22,6 +22,7 @@
 .listBox {
     border: 2px solid black;
     height: initial;
+    border-radius: 25px;
     width: calc((100% / 4) - 2%);
     float: left;
     margin: 1% 1%;
