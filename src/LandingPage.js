@@ -35,7 +35,7 @@ class LandingPage extends Component {
                         <p>Home</p>
                         <span className="visuallyHidden">Home Icon</span>
                     </Link>
-                    <Link to="/completedLists" className="allListsButton">
+                    <Link to="/completedLists" className="allListsButton homeButton">
                         <i class="fas fa-list-ul"></i>
                         <p>Completed Lists</p>
                         <span className="visuallyHidden">Completed Lists</span>

@@ -14,7 +14,8 @@ class CurrentList extends Component {
 		super();
 		this.state = {
 			items: [],
-			class: '',
+			button: 'btnContainer',
+			confirmed: false
 		};
 	}
 
@@ -32,8 +33,12 @@ class CurrentList extends Component {
 	}
 
 	handleSubmit = (key, title) => {
+
 		// const dbRef = firebase.database().ref('LockedLists')
 			// .set({ list: { key: { key }, title: { title } } });
+		this.setState({
+			button: 'btnHidden'
+		})
 		const dbRef = firebase.database().ref('LockedLists');
 		console.log(dbRef)
 		const itemsObject = { ...this.state.items }
@@ -62,12 +67,16 @@ class CurrentList extends Component {
 					onSortEnd={this.onSortEnd}
 				/>
 				{/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
-				{this.state.items.length === 10 ? 
-				<div className={this.state.class}>
-					<button className="reset btn">reset</button>
-					<button className="confirm btn" onClick={this.handleSubmit}>confirm</button>
-				</div> :
-				null
+				{ this.state.items.length === 10 ? 
+					<div className={this.state.button}>
+						<button className="reset btn">reset</button>
+						<button className="confirm btn" onClick={this.handleSubmit}>confirm</button>
+					</div> 
+					:
+					<div className="btnHidden">
+						<button className="reset btn">reset</button>
+						<button className="confirm btn" onClick={this.handleSubmit}>confirm</button>
+					</div> 
 				}
 			</Fragment>
 		);
@@ -80,22 +89,26 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 		<ol className="currentList">
 			{items.map((value, index) => {
 				// passing handleDelete function and the firebase key to child components
-				return <Fragment>
-					<SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
-				</Fragment>
-			}
-			)}
-
+				return 	<Fragment>
+							<SortableItem handleDelete={(key) => handleDelete(key)} firebaseKey={value.key} key={index} index={index} title={value.title} />
+						</Fragment>
+				
+					}
+				)}
 		</ol>
 	);
 });
 
+
 // the delete button here can now use the handleDelete function and the firebase key that have been passed down
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	return (
-		<li id={firebaseKey}>
+		<li id={firebaseKey} class="currentListItem">
 			<h2>{title}</h2>
-			<button className="delete" onClick={() => handleDelete(firebaseKey)}><i class="fas fa-minus-circle delete"></i></button>
+			<button className="delete" onClick={() => handleDelete(firebaseKey)}>
+				<i className="fas fa-minus-circle delete"></i>
+			</button>
+
 		</li>);
 });
 

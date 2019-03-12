@@ -2,7 +2,6 @@
     width: 75%;
     float: left;
     border-top: 80px solid #3080eb;
-    /* border-bottom: 80px solid #3080eb; */
     height: 100vh;
 }
 
@@ -10,7 +9,7 @@
     overflow: scroll;
     width: 90%;
     padding: 20px;
-    height: 80%;
+    height: 70%;
     margin: 30px auto 0 auto;
 }
 
@@ -73,29 +72,32 @@
     font-weight: bold;
     border: none;
     background: url(assets/dropDownArrow.png) 95% no-repeat; /* image came from Google images */
-    background-color: #c0f3fb;
+    background-color:#a5ebe8;
     appearance: none;
     cursor: pointer;
+    /* transition: all .5s ease; */
 }
 
 .yearDropDown option {
     margin: 0 auto;
+    background: #c0f3fb;
+    color: black;
 }
 
 .gameFooter {
     position: fixed;
     width: 75%;
     bottom: 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
     background-color: #3080eb;
     text-align: center;
 }
 
-.gameFooter a {
+/* .gameFooter a {
     margin: 10px 0;
-}
+} */
 
-@media (max-width: 1064px) {
+@media (max-width: 1264px) {
     .gamePage {
         width: 65%;
     }
@@ -105,7 +107,14 @@
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1100px) {
+    .movieCatalogueMovie {
+        width: 50%;
+        height: 340px;  
+    }
+}
+
+@media (max-width: 800px) {
     .movieCatalogue {
         height: 75%;
     }
@@ -115,6 +124,11 @@
     .gameFooter {
         width: 50%;
     }
+    .movieCatalogueMovie {
+        width: 100%;
+        height: 380px;
+        
+    }
 }
 
 @media (max-width: 650px) {
@@ -123,5 +137,11 @@
     }
     .gameFooter {
         width: 100%;
+    }
+}
+
+@media (max-height: 650px) {
+    .movieCatalogue {
+        height: 60%;
     }
 }
