@@ -73,10 +73,17 @@ h2 {
     display: inline-block; 
 }
 
-.currentListTitle {
-    font-size: 2rem;
-    padding-top: 3%;
-}
+/* .currentListTitle { */
+    /* font-family: 'Lato', sans-serif; */
+    /* font-weight: bold;
+    color: #204470;
+    background: #c0f3fb;
+    word-spacing: 5px;
+    font-size: .8rem;
+    padding: 2% 0;
+    margin: 100px 0;
+    text-transform: uppercase; */
+/* } */
 
 .btnContainer {
     width: 60%;
@@ -132,7 +139,7 @@ h2 {
 
 .confirm {
     background: #2a63f2;
-    float: right;
+    float: center;
     transition: background .5s ease;
 }
 
