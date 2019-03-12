@@ -2,10 +2,10 @@
     border-radius: 25px;
     border: 2px solid #3080eb;
     background: white;
-    width: 60%;
-    height: 60vh;
+    width: 90%;
+    height: 55vh;
     position: absolute;
-    margin-left: 20%;
+    margin-left: 5%;
     margin-top: 50px;
     transition: all .8s;
     z-index: 999;
@@ -13,7 +13,6 @@
 
 .modalHeader {
     height: 40px;
-    line-height: 40px;
     padding: 5px 20px;
     margin-bottom: 10px;
     text-align: center;
@@ -43,7 +42,7 @@
     color: black;
     cursor: pointer;
     font-size: 30px;
-    margin: 10px;
+    margin: 10px 20px 0 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -54,4 +53,66 @@
     position: fixed;
     transition: all 1.3s;
     width: 100%;
+}
+
+@media (max-width: 1050px) {
+    .modalWrapper {
+        width: 70%;
+        height: 65vh;
+        margin-left: 15%;
+    }
+}
+
+@media (max-width: 770px) {
+    .modalWrapper {
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 620px) {
+    .modalWrapper {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+
+    .modalHeader h3 {
+        font-size: 1.2rem;
+    }
+
+    .modalBody {
+        padding: 5px 15px;
+    }
+
+    .modalBody p {
+        display: none;
+    }
+
+    .modalBody li {
+        padding: 3px 0;
+    }
+}
+
+@media (max-height: 710px) {
+    .modalHeader {
+        height: 30px;
+    }
+    .modalWrapper {
+        margin-top: 5px;
+    }
+}
+
+@media (max-height: 550px) {
+    .modalHeader h3 {
+        font-size: 1.6rem;
+    }
+
+    .modalWrapper {
+        margin-top: 5px;
+    }
+
+    .modalBody {
+        font-size: 0.8rem;
+    }
 }

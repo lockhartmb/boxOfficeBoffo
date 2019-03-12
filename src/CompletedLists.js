@@ -88,7 +88,18 @@ class CompletedLists extends Component {
         return (
 
             <div className="completedLists">
+                <div>
+                    {this.state.isShowing ?
+                        <div onClick={this.closeModalHandler} className="backDrop"></div> :
+                        null}
 
+                    <Modal
+                        className="modal"
+                        show={this.state.isShowing}
+                        close={this.closeModalHandler}>
+                        Need some more info?
+                        </Modal>
+                </div>
                 <h2 className="completedListsTitle">Compare your Predictions!</h2>
 
                 {/* ul of alllll the lists */}

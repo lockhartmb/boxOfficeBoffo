@@ -188,6 +188,7 @@ class GamePage extends Component {
         return (
             <Fragment>
                 <section className="gamePage">
+
                     <div>
                         {this.state.isShowing ?
                             <div onClick={this.closeModalHandler} className="backDrop"></div> :
@@ -200,6 +201,7 @@ class GamePage extends Component {
                             Need some more info?
                         </Modal>
                     </div>
+                    
                     <p className="instructions">Select a year and start adding movies to your list.</p>
                     <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
