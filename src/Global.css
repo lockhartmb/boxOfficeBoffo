@@ -39,3 +39,8 @@ li {
 .float {
     float: left;
 }
+
+
+.hide {
+    display: none;
+}
