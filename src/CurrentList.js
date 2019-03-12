@@ -66,6 +66,10 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
+<<<<<<< HEAD
+		
+=======
+>>>>>>> c28161bc0018f65b22913b3dd8b369d0e2690f48
 		return (
 			<Fragment >
 				{/* <h3 className="currentListTitle">order your list</h3> */}
