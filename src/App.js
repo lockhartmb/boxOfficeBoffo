@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import GamePage from './GamePage.js';
 import CompletedLists from './CompletedLists.js';
+
 import "./Global.css";
 import firebase from './firebase.js';
 
@@ -78,6 +79,7 @@ class App extends Component {
           }
           } />
           <Route path='/completedlists' component={CompletedLists} />
+          {/* <Route path='/help' component={HelpModal} /> */}
         </div>
       </Router>
 
@@ -87,3 +89,8 @@ class App extends Component {
 
 export default App;
 // render(<SortableComponent />, document.getElementById('root'));
+
+
+
+
+

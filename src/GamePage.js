@@ -10,7 +10,7 @@ import CurrentList from './CurrentList.js';
 import UserArea from './UserArea.js'
 import ResetConfirm from './ResetConfirm'
 import CompletedLists from "./CompletedLists.js";
-import MovieItem from './MovieItem.js';
+import Modal from './Modal.js';
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -24,16 +24,28 @@ class GamePage extends Component {
             year: "2019",
             results: [],
             clickedMovie: '',
-            chosenMovies: this.props.chosenMovies,
+            chosenMovies: [],
             displayList: [],
-            class: 'addMovie',
-            active: true
+            class: '',
+            isShowing: false
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
     // used props to get the year from GamePage and saved as variable. Variable is used in search parameters to make that dynamic
-    // when component mounts, it will fetchData which is with the year 2019 as default
 
+    openModalHandler = () => {
+        this.setState({
+            isShowing: true
+        });
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            isShowing: false
+        });
+    }
+
+    // when component mounts, it will fetchData which is with the year 2019 as default
     componentDidMount() {
         this.fetchData();
     }
@@ -82,6 +94,7 @@ class GamePage extends Component {
         })
     }
 
+
     // handleYear is always looking for the chosen year, so if a new year is chosen in the dropdown, GamePage will know about it (it's state is updated)
     handleYear = (event) => {
         event.preventDefault();
@@ -90,14 +103,8 @@ class GamePage extends Component {
         })
     }
 
-
-
     addCurrentMovie = async (event) => {
         event.preventDefault();
-        console.log("hi")
-        this.setState({
-            class: 'hide'
-        })
         let numberOfMovies = this.state.chosenMovies.length;
         const canAddMovies = numberOfMovies < 10;
         // console.log(canAddMovies)
@@ -108,8 +115,8 @@ class GamePage extends Component {
             dbRef.push(data);
             // we get this informations from the click and set the state of that clicked movie
             await this.setState({
-                clickedMovie: data
-
+                clickedMovie: data,
+                class: 'hide'
             })
             // console.log('data after clicking', data)
             //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
@@ -126,44 +133,10 @@ class GamePage extends Component {
                 }
                 // console.log(getMoviesBack);
                 this.setState({
-                    chosenMovies: getMoviesBack,
+                    chosenMovies: getMoviesBack
                 })
             })
         }
-    }
-
-    toggleClass = (e) => {
-        e.preventDefault();
-        this.setState ({
-            class: 'hide'
-        })
-        // const movieName = e;
-        // this.setState({
-        //     class: 
-        // })
-        
-        // if (e === e) {
-        //     this.setState({
-        //         class: 'hide'
-        //     })
-        // } else {
-        //     this.setState({
-        //         class: 'addMovie'
-        //     })
-        // }
-        // if (movieName === movieName) {
-        //     this.setState({
-        //         class: 'hide'
-        //     })
-        // }
-        // console.log(movieName);
-        
-        // if (toggle === e.target.value) {
-        //     this.setState ({
-        //         class: 'hide'
-        //     })
-        // }
-        // console.log(toggle);
     }
 
 
@@ -171,6 +144,18 @@ class GamePage extends Component {
         return (
             <Fragment>
                 <section className="gamePage">
+                    <div>
+                        {this.state.isShowing ?
+                            <div onClick={this.closeModalHandler} className="backDrop"></div> :
+                            null}
+
+                        <Modal
+                            className="modal"
+                            show={this.state.isShowing}
+                            close={this.closeModalHandler}>
+                            Need some more info?
+                        </Modal>
+                    </div>
                     <p className="instructions">Select a year and start adding movies to your list.</p>
                     <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
@@ -195,26 +180,20 @@ class GamePage extends Component {
                         }).map(movie => {
 
                             return (
+                                <div key={movie.id} className="movieCatalogueMovie">
+                                    {/* a link to a URL that doesn't exist yet, but when it does, it will be the ID of the movie I click on */}
 
-                                <MovieItem
-                                    key={movie.id}
-                                    id={movie.id}
-                                    class={this.state.class}
-                                    movieTitle={movie.title}
-                                    poster={movie.poster_path}
-                                    addCurrentMovie={this.addCurrentMovie}
-                                />
+                                    <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
+                                    <div className="overlay">
+                                        <p>{movie.title}</p>
+                                    </div>
 
-                                // <div key={movie.id} className="movieCatalogueMovie">
-                                //     <img className="movieImage" src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-                                //     <div className="overlay">
-                                //         <p>{movie.title}</p>
-                                //     </div>
-                                //     <button className={this.state.class} value={movie.title} onClick={this.addCurrentMovie}>
-                                //         <i className="fas fa-plus"></i>
-                                //         <span className="visuallyHidden">Add movie to list</span>
-                                //     </button>
-                                // </div>
+                                    <button className="addMovie" value={movie.title} onClick={this.addCurrentMovie} >
+                                        <i className="fas fa-plus"></i>
+                                        <span className="visuallyHidden">Add movie to list</span>
+                                    </button>
+
+                                </div>
                             )
                         })
                         }
@@ -228,17 +207,16 @@ class GamePage extends Component {
                             <i class="fas fa-list-ul"></i>
                             <span className="visuallyHidden">Completed Lists</span>
                         </Link>
-                        <Link to="/" className="homeButton">
+                        <button className="helpButton homeButton" onClick={this.openModalHandler}>
                             <i class="fas fa-question"></i>
                             <span className="visuallyHidden">More info</span>
-                        </Link>
+                        </button>
                     </footer>
                 </section>
 
                 <div className="currentListContainer">
                     <UserArea className="float" userName={this.props.userName} />
                     <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} className="float" />
-                    {/* <ResetConfirm className={this.state.class}/> */}
                 </div>
             </Fragment>
         )
@@ -247,4 +225,4 @@ class GamePage extends Component {
 export default GamePage;
 //user click on a movie to add to his list
 //find a way to limit to 10 movies choices for each list
-    //send error message "you already choose 10 MOVIES"
+//send error message "you already choose 10 MOVIES"

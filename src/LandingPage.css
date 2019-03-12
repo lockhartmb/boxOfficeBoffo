@@ -74,7 +74,6 @@ footer a {
     /* margin: 30px 0; */
     /* padding: 20px 0; */
     float: left;
-    width: calc(100% / 3);
     text-transform: uppercase;
     text-decoration: none;
     color: white;
@@ -87,6 +86,7 @@ footer p {
 .homeButton{
     margin: 0;
     padding: 13px 0;
+    width: calc(100% / 3);
     transition: background .2s ease;
 }
 
@@ -94,6 +94,11 @@ footer p {
     background: #3e6da7;
 }
 
+.helpButton {
+    color: white;
+    background-color: transparent;
+    border: none;
+}
 
 @media (max-width: 970px) {
     .contentContainer h1 {

@@ -1,0 +1,57 @@
+.modalWrapper {
+    border-radius: 25px;
+    border: 2px solid #3080eb;
+    background: white;
+    width: 60%;
+    height: 60vh;
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 50px;
+    transition: all .8s;
+    z-index: 999;
+}
+
+.modalHeader {
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.modalHeader h3 {
+    color: black;
+    float: left;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.modalBody {
+    padding: 10px 30px;
+    text-align: center;
+}
+
+.modalBody li {
+    list-style: auto inside;
+    padding: 10px 0;
+}
+
+.closeModalBtn {
+    color: black;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.backDrop {
+    height: 100%;
+    position: fixed;
+    transition: all 1.3s;
+    width: 100%;
+}

@@ -73,6 +73,11 @@ h2 {
     display: inline-block; 
 }
 
+.currentListTitle {
+    font-size: 2rem;
+    padding-top: 3%;
+}
+
 .btnContainer {
     width: 60%;
     /* border: 1px solid red; */
