@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
 import "./CurrentList.css";
 import "./Global.css";
+import swal from 'sweetalert';
 import {
 	SortableContainer,
 	SortableElement,
@@ -33,17 +34,25 @@ class CurrentList extends Component {
 	}
 
 	handleSubmit = (key, title) => {
-
+		swal({
+			title: "You've locked in your choices",
+			text: "Check the Completed Lists page to compare your predictions!",
+			icon: "success",
+			button: "Awesome!",
+			dangerMode: true,
+		})
 		// const dbRef = firebase.database().ref('LockedLists')
 			// .set({ list: { key: { key }, title: { title } } });
-		this.setState({
-			button: 'btnHidden'
-		})
-		const dbRef = firebase.database().ref('LockedLists');
-		console.log(dbRef)
-		const itemsObject = { ...this.state.items }
-		const userObject = { userName: this.props.userName, list: itemsObject }
-		dbRef.push(userObject);
+			const dbRef = firebase.database().ref('LockedLists');
+			console.log(dbRef)
+			const itemsObject = { ...this.state.items }
+			const userObject = { userName: this.props.userName, list: itemsObject }
+			dbRef.push(userObject);
+			this.setState({
+				button: 'btnHidden',
+				items: []
+			})
+		 
 	}
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
@@ -57,6 +66,7 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
+		
 		return (
 			<Fragment >
 				{/* <h3 className="currentListTitle">order your list</h3> */}
