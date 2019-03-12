@@ -225,4 +225,4 @@ class GamePage extends Component {
 export default GamePage;
 //user click on a movie to add to his list
 //find a way to limit to 10 movies choices for each list
-    //send error message "you already choose 10 MOVIES"
+//send error message "you already choose 10 MOVIES"
