@@ -10,6 +10,7 @@ import CurrentList from './CurrentList.js';
 import UserArea from './UserArea.js'
 import ResetConfirm from './ResetConfirm'
 import CompletedLists from "./CompletedLists.js";
+import Modal from './Modal.js';
 
 
 const apiUrl = 'https://api.themoviedb.org/3/discover/movie/'
@@ -24,13 +25,25 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-            displayList: [], 
-            class: ''
+            displayList: [],
+            class: '',
+            isShowing: false
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
     // used props to get the year from GamePage and saved as variable. Variable is used in search parameters to make that dynamic
 
+    openModalHandler = () => {
+        this.setState({
+            isShowing: true
+        });
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            isShowing: false
+        });
+    }
 
     // when component mounts, it will fetchData which is with the year 2019 as default
     componentDidMount() {
@@ -131,6 +144,18 @@ class GamePage extends Component {
         return (
             <Fragment>
                 <section className="gamePage">
+                    <div>
+                        {this.state.isShowing ?
+                            <div onClick={this.closeModalHandler} className="backDrop"></div> :
+                            null}
+
+                        <Modal
+                            className="modal"
+                            show={this.state.isShowing}
+                            close={this.closeModalHandler}>
+                            Need some more info?
+                        </Modal>
+                    </div>
                     <p className="instructions">Select a year and start adding movies to your list.</p>
                     <select className="yearDropDown" onChange={this.handleYear}>
                         <option value="2019">2019</option>
@@ -182,10 +207,10 @@ class GamePage extends Component {
                             <i class="fas fa-list-ul"></i>
                             <span className="visuallyHidden">Completed Lists</span>
                         </Link>
-                        <Link to="/help" className="helpButton homeButton">
+                        <button className="helpButton homeButton" onClick={this.openModalHandler}>
                             <i class="fas fa-question"></i>
-                            <span className="visuallyHidden">Help info</span>
-                        </Link>
+                            <span className="visuallyHidden">More info</span>
+                        </button>
                     </footer>
                 </section>
 
