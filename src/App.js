@@ -12,7 +12,9 @@ class App extends Component {
     super();
     this.state = {
       userName: '',
-      alertParagraph: ''
+      duplicateError: '',
+      nothingError: '',
+      class: 'hide'
     }
   }
 
@@ -23,7 +25,11 @@ class App extends Component {
     })
 
     if (this.state.userName === '') {
-      // show alert that username is required
+      this.setState({
+        nothingError: 'You must give your list a name',
+        duplicateError: '',
+        class: 'hide'
+      })
     }
 
     if (this.state.userName !== '') {
@@ -39,7 +45,17 @@ class App extends Component {
             duplicate = true;
 
             this.setState({
-              alertParagraph: 'you need to pick a new name'
+              duplicateError: 'That name is already taken, pick a new name',
+              nothingError: null,
+              class: 'hide'
+            })
+          } else if (this.state.userName !== '' && this.state.userName !== firebaseData[key].userName) {
+            duplicate = false;
+
+            this.setState({
+              duplicateError: null,
+              nothingError: null,
+              class: 'startButton'
             })
           }
         }
@@ -53,7 +69,7 @@ class App extends Component {
         <div className="App">
           {/* URL path to go to the landing page. This route is also sending the handleChange method and the userName state to the LandingPage component*/}
           <Route exact path='/' render={() => {
-            return <LandingPage handleChange={this.handleChange} alertParagraph={this.state.alertParagraph} userName={this.state.userName} />
+            return <LandingPage handleChange={this.handleChange} class={this.state.class} nothingError={this.state.nothingError} duplicateError={this.state.duplicateError} userName={this.state.userName} />
           }
           } />
           {/* URL path to go to the game page. This route is also sending the userName state to the GamePage component*/}
@@ -71,3 +87,8 @@ class App extends Component {
 
 export default App;
 // render(<SortableComponent />, document.getElementById('root'));
+
+
+
+
+

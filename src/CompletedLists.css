@@ -1,0 +1,113 @@
+.userLists {
+    height: inherit;
+    overflow: scroll;
+    height: 80%;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.completedListsTitle {
+    display: block;
+    position: static;
+    float: none;
+    text-align: center;
+    font-size: 4rem;
+    height: initial;
+    width: initial;
+    padding: initial;
+    text-transform: uppercase;
+    
+}
+
+.listBox {
+    border: 2px solid black;
+    height: initial;
+    width: calc((100% / 4) - 2%);
+    float: left;
+    margin: 1% 1%;
+    border-top: 50px solid #204470;
+    border-bottom: 50px solid #204470;
+    background: rgb(139, 217, 241);
+}
+
+.listBox button{
+    margin: 2% 0;
+    border-radius: 20px;
+    width: 160px;
+    height: 45px;
+    color: #204470;
+    border-style: none;
+}
+
+.moviesList {
+    list-style: decimal;
+    border-radius: 20px;
+    background: whitesmoke;
+    margin: 2% 2%;
+    border: 2px solid #58728d;
+    color: crimson;
+    font-size: 1.5rem;
+    text-align: left;
+    list-style-position: inside;
+    padding-left: 5%;
+}
+
+.moviesList span {
+    color: black;
+    font-size: 1rem;
+}
+
+.listName {
+    font-family: 'Judson', serif;
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    padding: 1% 0;
+}
+
+.completedLists {
+    border-top: 80px solid #3080eb;
+    height: 100vh;
+    width: 100%;
+    float: left;
+}
+
+.listsFooter {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    /* bottom: 0; */
+    font-size: 2rem;
+    background-color: #3080eb;
+    text-align: center;
+}
+
+@media (max-width: 1850px) {
+    .moviesList {
+        font-size: 1.3rem;
+    }
+    .moviesList span {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 1800px) {
+   .listBox {
+       width: calc((100% / 3) - 3%);
+    } 
+}
+
+@media (max-width: 1400px) {
+    .listBox {
+        width: calc((100% / 2) - 2%);
+    }
+     .moviesList {
+        font-size: 1.5rem;
+    }
+    .moviesList span {
+        font-size: 1rem;
+    }
+    .completedListsTitle {
+        font-size: 3rem;
+    }
+}
