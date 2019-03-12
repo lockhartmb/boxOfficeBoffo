@@ -68,10 +68,9 @@ class CurrentList extends Component {
 
 	// passing handleDelete function to child components
 	render() {
-
 		return (
 			<Fragment >
-				<h3 className="currentListTitle">Order Your List!</h3>
+				{/* <h3 className="currentListTitle">order your list</h3> */}
 				<SortableList
 					handleDelete={key => this.handleDelete(key)}
 					items={this.state.items}
@@ -80,12 +79,10 @@ class CurrentList extends Component {
 				{/* <button className="submitList" onClick={this.handleSubmit}>Submit</button> */}
 				{this.state.items.length === 10 ?
 					<div className={this.state.button}>
-						<button className="reset btn">reset</button>
 						<button className="confirm btn" onClick={this.handleSubmit}>confirm</button>
 					</div>
 					:
 					<div className="btnHidden">
-						<button className="reset btn">reset</button>
 						<button className="confirm btn" onClick={this.handleSubmit}>confirm</button>
 					</div>
 				}

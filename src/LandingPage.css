@@ -110,6 +110,11 @@ footer p {
     }
 
 }
+@media (max-width: 600px) {
+    .homeButton i{
+        font-size: 1.2rem;
+    }
+}
 
 @media (max-width: 510px) {
     footer {
@@ -188,7 +193,11 @@ footer p {
         margin: 10px 0;
     }
 
+    
+
     .landingPage {
         border-top: 30px solid #3080eb;
     }
+
+
 }

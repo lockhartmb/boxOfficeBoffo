@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from './firebase';
 import "./Global.css";
 import "./CompletedLists.css";
+import "./Modal.css";
 import swal from 'sweetalert';
+import Modal from './Modal.js';;
 
 class CompletedLists extends Component {
     constructor() {
@@ -69,6 +71,18 @@ class CompletedLists extends Component {
         // console.log(dbRef);
     }
 
+    openModalHandler = () => {
+        this.setState({
+            isShowing: true
+        });
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            isShowing: false
+        });
+    }
+
     render() {
 
         return (
@@ -92,7 +106,7 @@ class CompletedLists extends Component {
 
                                     <h3 className="listName">{user.userName}</h3>
 
-                                    <ol>
+                                    <ol className="olContainer">
                                         {
                                             // for each user, print all that user's movies
                                             user.userList.map((movie, index) => {
@@ -103,7 +117,7 @@ class CompletedLists extends Component {
                                         }
                                     </ol>
 
-                                    <button onClick={() => this.handleDelete(user.key)}>Delete List</button>
+                                    <button className="deleteList" onClick={() => this.handleDelete(user.key)}>Delete</button>
 
                                 </li>
                             )
@@ -111,11 +125,22 @@ class CompletedLists extends Component {
                     }
                 </ul>
 
-                <footer className="listsFooter">
+                <footer className="landingFooter clearfix">
                     <Link to="/" className="homeButton">
                         <i class="fas fa-home"></i>
+                        <p>Home</p>
                         <span className="visuallyHidden">Home Icon</span>
                     </Link>
+                    <Link to="/completedLists" className="allListsButton homeButton">
+                        <i class="fas fa-list-ul"></i>
+                        <p>Completed Lists</p>
+                        <span className="visuallyHidden">Completed Lists</span>
+                    </Link>
+                    <button className="helpButton homeButton" onClick={this.openModalHandler}>
+                        <i class="fas fa-question"></i>
+                        <p>Help</p>
+                        <span className="visuallyHidden">More info</span>
+                    </button>
                 </footer>
 
             </div>
