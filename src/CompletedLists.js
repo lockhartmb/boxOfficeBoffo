@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from './firebase';
 import "./Global.css";
 import "./CompletedLists.css"
@@ -46,32 +47,39 @@ class CompletedLists extends Component {
     render() {
         return (
 
-            <Fragment className="completedLists">
-                <h2>All the completed lists</h2>
+            <div className="completedLists">
+                <h2 id="completedListsTitle">Compare your Predictions!</h2>
                 {/* ul of alllll the lists */}
-                <ul className="allTheLists" id="userLists">
+                <ul className="clearfix" id="userLists">
                     {
                         // for each user, print the userName as a title
                         this.state.newStateAllTheMovieInfo.map((user, index) => {
                             return (
                                 <li key={index} id="listBox">
-                                    <h3>{user.userName}</h3>
+                                    <h3 className="listName">{user.userName}</h3>
                                     <ol>
                                         {
                                             // for each user, print all that user's movies
                                             user.userList.map((movie, index) => {
                                                 return (
-                                                    <li key={index}>{movie.title}</li>
+                                                    <li key={index} id="moviesList"><span>{movie.title}</span></li>
                                                 )
                                             })
                                         }
                                     </ol>
+                                    <button>Delete List</button>
                                 </li>
                             )
                         })
                     }
                 </ul>
-            </Fragment>
+                <footer className="listsFooter">
+                    <Link to="/" className="homeButton">
+                        <i class="fas fa-home"></i>
+                        <span className="visuallyHidden">Home Icon</span>
+                    </Link>
+                </footer>
+            </div>
         )
     }
 }
