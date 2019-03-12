@@ -112,6 +112,7 @@ const SortableList = SortableContainer(({ items, handleDelete }) => {
 const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	console.log(firebaseKey);
 	return (
+<<<<<<< HEAD
 		<li id={firebaseKey} class="currentListItem noSelect">
 			<h2>{title}</h2>
 			<button className="delete" onClick={() => handleDelete(firebaseKey)}>
@@ -119,6 +120,19 @@ const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 			</button>
 
 		</li>);
+=======
+		<Fragment>
+			<div id={firebaseKey} class="currentListItem">
+				<li className="listNumber"></li>
+				<h2>{title}</h2>
+				<button className="delete" onClick={() => handleDelete(firebaseKey)}>
+					<i className="fas fa-minus-circle delete"></i>
+				</button>
+
+			</div>
+		</Fragment>
+	);
+>>>>>>> e5765fc1abda235c8ed3b71ebe7fc0d776e1ab36
 });
 
 // render(<CurrentList />, document.getElementById('root'));

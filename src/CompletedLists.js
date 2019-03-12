@@ -101,22 +101,15 @@ class CompletedLists extends Component {
                         </Modal>
                 </div>
                 <h2 className="completedListsTitle">Compare your Predictions!</h2>
-
                 {/* ul of alllll the lists */}
                 <ul className="clearfix" className="userLists">
                     {
-
-
                         // for each user, print the userName as a title
                         this.state.newStateAllTheMovieInfo.map((user, index) => {
-
                             // console.log(user.keys);
                             return (
-
                                 <li key={index} id={user.key} className="listBox">
-
                                     <h3 className="listName">{user.userName}</h3>
-
                                     <ol className="olContainer">
                                         {
                                             // for each user, print all that user's movies
@@ -127,9 +120,7 @@ class CompletedLists extends Component {
                                             })
                                         }
                                     </ol>
-
                                     <button className="deleteList" onClick={() => this.handleDelete(user.key)}>Delete</button>
-
                                 </li>
                             )
                         })
