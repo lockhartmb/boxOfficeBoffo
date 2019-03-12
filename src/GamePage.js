@@ -24,7 +24,8 @@ class GamePage extends Component {
             results: [],
             clickedMovie: '',
             chosenMovies: [],
-            displayList: []
+            displayList: [], 
+            class: ''
         }
     }
     // we're making fetchData it's own function that gets the currentYear from GamePage through props. Then fetchData can be called many times depending on situation
@@ -101,7 +102,8 @@ class GamePage extends Component {
             dbRef.push(data);
             // we get this informations from the click and set the state of that clicked movie
             await this.setState({
-                clickedMovie: data
+                clickedMovie: data,
+                class: 'hide'
             })
             // console.log('data after clicking', data)
             //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
@@ -180,9 +182,9 @@ class GamePage extends Component {
                             <i class="fas fa-list-ul"></i>
                             <span className="visuallyHidden">Completed Lists</span>
                         </Link>
-                        <Link to="/" className="homeButton">
+                        <Link to="/help" className="helpButton homeButton">
                             <i class="fas fa-question"></i>
-                            <span className="visuallyHidden">More info</span>
+                            <span className="visuallyHidden">Help info</span>
                         </Link>
                     </footer>
                 </section>
@@ -190,7 +192,6 @@ class GamePage extends Component {
                 <div className="currentListContainer">
                     <UserArea className="float" userName={this.props.userName} />
                     <CurrentList chosenMovies={this.state.chosenMovies} userName={this.props.userName} className="float" />
-                    {/* <ResetConfirm className={this.state.class}/> */}
                 </div>
             </Fragment>
         )
