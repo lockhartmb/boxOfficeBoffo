@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from './firebase';
 import "./Global.css";
-import "./CompletedLists.css"
+import "./CompletedLists.css";
+import swal from 'sweetalert';
 
 class CompletedLists extends Component {
     constructor() {
@@ -48,7 +49,23 @@ class CompletedLists extends Component {
     handleDelete = (key) => {
 
         const dbRef = firebase.database().ref('LockedLists').child(key);
-        dbRef.remove();
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this list!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    dbRef.remove();
+                    swal("Poof! Your list has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your list is safe!");
+                }
+            });
         // console.log(dbRef);
     }
 
