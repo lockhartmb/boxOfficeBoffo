@@ -63,9 +63,33 @@ class GamePage extends Component {
         let { year } = this.state;
         // console.log('fetchData')
 
+        // await axios({
+        //     method: `get`,
+        //     url: apiUrl,
+        //     params: {
+        //         api_key: apiKey,
+        //         language: `en-US`,
+        //         sort_by: `popularity.desc`,
+        //         'primary_release_date.gte': `${year}-05-01`,
+        //         'primary_release_date.lte': `${year}-09-04`,
+        //         region: 'US',
+        //         page: 1,
+        //         sort_by: 'popularity.desc',
+        //         include_video: false,
+        //         include_adult: false,
+        //         page: 1
+        //     }
+        // }).then(response => {
+        //     const results = response.data.results;
+        //     this.setState({
+        //         results: results
+        //     });
+        //     console.log(results);
+        // })
+
         await axios({
             method: 'GET',
-            url: 'http://proxy.hackeryou.com',
+            url: 'https://cors-anywhere.herokuapp.com/',
             dataResponse: 'json',
             paramsSerializer: function (params) {
                 return Qs.stringify(params, { arrayFormat: 'brackets' })
@@ -91,7 +115,9 @@ class GamePage extends Component {
             // .then() and this.setState() will wait until the axios call is done because it has "await" on it
         }).then(response => {
             const results = response.data.results;
-            this.setState({ results });
+            this.setState({ 
+                results: results });
+            console.log(results);
         })
     }
 
