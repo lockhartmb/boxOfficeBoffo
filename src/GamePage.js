@@ -89,7 +89,7 @@ class GamePage extends Component {
 
         await axios({
             method: 'GET',
-            url: 'https://cors-anywhere.herokuapp.com/',
+            url: 'https://proxy.hackeryou.com',
             dataResponse: 'json',
             paramsSerializer: function (params) {
                 return Qs.stringify(params, { arrayFormat: 'brackets' })
