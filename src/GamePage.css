@@ -58,6 +58,11 @@
     position: absolute;
     top: 0;
     right: 0;
+    transition: background-color 0.25s ease-in-out;
+}
+
+.movieCatalogueMovie button:hover {
+    background-color: #58728d;
 }
 
 .instructions {

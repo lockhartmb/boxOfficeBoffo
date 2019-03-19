@@ -46,6 +46,11 @@
     position: absolute;
     top: 0;
     right: 0;
+    transition: color 0.15s ease-in-out;
+}
+
+.closeModalBtn:hover {
+    color: #3080eb;
 }
 
 .backDrop {

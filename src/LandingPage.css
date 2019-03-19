@@ -32,6 +32,9 @@
     margin-top: 20px;
     text-align: center;
 }
+.inputName:focus {
+    border: 2px dotted #3080eb;
+}
 
 .inputName::placeholder {
     font-size: .8rem;
@@ -42,7 +45,9 @@
     background-color: #3080eb;
     color: white;
     width: 100px;
+    font-weight: bold;
     margin: 20px auto 10vh auto;
+    border: 2px solid #3080eb;
     border-radius: 25px;
     padding: 10px 0;
     text-decoration: none;
@@ -54,6 +59,10 @@
 
 .startButton:active {
     transform: translateX(3px) translateY(3px);
+}
+
+.startButton:focus {
+    border: 2px dotted white;
 }
 
 footer {
@@ -89,7 +98,7 @@ footer p {
 }
 
 .homeButton:hover {
-    background: #3e6da7;
+    background: #58728d;
 }
 
 .helpButton {

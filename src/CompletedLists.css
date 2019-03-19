@@ -1,13 +1,14 @@
+.completedLists {
+	max-height: 100vh;
+}
+
 .userLists {
-	height: inherit;
-	overflow: scroll;
-	height: 70%;
 	width: 90%;
-	margin: 0 auto;
+	margin: 0 auto 200px auto;
 	list-style: none;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 }
 
@@ -32,8 +33,8 @@
 	border-radius: 25px;
 	width: calc((100% / 4) - 5%);
 	margin: 2.5% 2.5%;
-	border-top: 50px solid #204470;
-	border-bottom: 50px solid #204470;
+	border-top: 50px solid #58728d;
+	border-bottom: 50px solid #58728d;
 	background: #c0f3fb;
 	display: flex;
 	flex-direction: column;
@@ -86,12 +87,13 @@
 	background: white;
 	margin: 8px 0;
 	border-radius: 30px;
-	width: 70px;
-	height: 30px;
+	width: 50%;
 	font-size: 0.7rem;
-	color: #204470;
+	color: #3080eb;
 	border-style: none;
 	text-transform: uppercase;
+	padding: 5px 0 0 0;
+	display: inline-block;
 }
 
 @media (max-width: 1850px) {

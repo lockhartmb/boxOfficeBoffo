@@ -117,7 +117,10 @@ class CompletedLists extends Component {
                                             })
                                         }
                                     </ol>
-                                    <button className="deleteList" onClick={() => this.handleDelete(user.key)}>Delete</button>
+                                    <button className="deleteList" onClick={() => this.handleDelete(user.key)}>
+                                        <i className="fas fa-minus-circle delete"></i>
+                                        <span className="visuallyHidden">Click to delete entire list</span>
+                                    </button>
                                 </li>
                             )
                         })

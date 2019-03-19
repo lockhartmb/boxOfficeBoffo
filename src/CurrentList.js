@@ -119,6 +119,7 @@ const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 				</li>
 				<button className="delete" onClick={() => handleDelete(firebaseKey)}>
 					<i className="fas fa-minus-circle delete"></i>
+					<span className="visuallyHidden">Click to delete movie from list</span>
 				</button>
 
 			</div>
