@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Qs from 'qs';
 import firebase from 'firebase';
@@ -8,8 +8,6 @@ import './Global.css';
 import './CurrentList.css';
 import CurrentList from './CurrentList.js';
 import UserArea from './UserArea.js'
-import ResetConfirm from './ResetConfirm'
-import CompletedLists from "./CompletedLists.js";
 import Modal from './Modal.js';
 import swal from 'sweetalert'
 
@@ -54,38 +52,12 @@ class GamePage extends Component {
     // if the component updates (ie, if the currentYear changes), then it will fetchData again
     componentDidUpdate(prevProps, prevState) {
         if (this.state.year !== prevState.year) {
-            /*  console.log('year', this.state.year, 'prev', prevProps.year, prevState.year) */
             this.fetchData();
         }
     }
 
     fetchData = async () => {
         let { year } = this.state;
-        // console.log('fetchData')
-
-        // await axios({
-        //     method: `get`,
-        //     url: apiUrl,
-        //     params: {
-        //         api_key: apiKey,
-        //         language: `en-US`,
-        //         sort_by: `popularity.desc`,
-        //         'primary_release_date.gte': `${year}-05-01`,
-        //         'primary_release_date.lte': `${year}-09-04`,
-        //         region: 'US',
-        //         page: 1,
-        //         sort_by: 'popularity.desc',
-        //         include_video: false,
-        //         include_adult: false,
-        //         page: 1
-        //     }
-        // }).then(response => {
-        //     const results = response.data.results;
-        //     this.setState({
-        //         results: results
-        //     });
-        //     console.log(results);
-        // })
 
         await axios({
             method: 'GET',
@@ -104,7 +76,7 @@ class GamePage extends Component {
                     'primary_release_date.lte': `${year}-09-04`,
                     region: 'US',
                     page: 1,
-                    sort_by: 'revenue.desc',
+                    // sort_by: 'revenue.desc',
                     sort_by: 'popularity.desc'
                 },
                 proxyHeaders: {
@@ -117,7 +89,6 @@ class GamePage extends Component {
             const results = response.data.results;
             this.setState({ 
                 results: results });
-            console.log(results);
         })
     }
 
@@ -137,8 +108,6 @@ class GamePage extends Component {
         let numberOfMovies = this.state.chosenMovies.length;
 
         const canAddMovies = numberOfMovies < 10;
-
-        console.log(this.state.chosenMovies)
 
         let duplicatedMovie = false
 
@@ -160,8 +129,6 @@ class GamePage extends Component {
 
         }
 
-        console.log(duplicatedMovie)
-
         if (canAddMovies && duplicatedMovie === false) {
             const dbRef = firebase.database().ref(this.props.userName);
             const data = event.target.value;
@@ -171,16 +138,12 @@ class GamePage extends Component {
                 clickedMovie: data,
                 class: 'hide'
             })
-            // console.log('data after clicking', data)
+            
             //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
             dbRef.on('value', response => {
                 const moviesFromFirebase = response.val();
 
-                const getMoviesBack = []
-
-                // console.log(moviesFromFirebase)
-
-                // console.log('Key in Data Value', dataVal.key)
+                const getMoviesBack = [];
 
                 for (let key in moviesFromFirebase) {
 
@@ -194,20 +157,13 @@ class GamePage extends Component {
 
                 }
 
-                // console.log(getMoviesBack);
-
                 this.setState({
-
                     chosenMovies: getMoviesBack
-
                 })
 
             })
         }
     }
-
-
-
 
 
     render() {
@@ -270,20 +226,22 @@ class GamePage extends Component {
                         })
                         }
                     </div> {/* end of movieCatalogue div*/}
+                    
                     <footer className="gameFooter clearfix">
                         <Link to="/" className="homeButton">
-                            <i class="fas fa-home"></i>
+                            <i className="fas fa-home"></i>
                             <span className="visuallyHidden">Home Icon</span>
                         </Link>
                         <Link to="/completedLists" className="allListsButton homeButton">
-                            <i class="fas fa-list-ul"></i>
+                            <i className="fas fa-list-ul"></i>
                             <span className="visuallyHidden">Completed Lists</span>
                         </Link>
                         <button className="helpButton homeButton" onClick={this.openModalHandler}>
-                            <i class="fas fa-question"></i>
+                            <i className="fas fa-question"></i>
                             <span className="visuallyHidden">More info</span>
                         </button>
                     </footer>
+
                 </section>
 
                 <div className="currentListContainer">
@@ -294,7 +252,5 @@ class GamePage extends Component {
         )
     }
 }
+
 export default GamePage;
-//user click on a movie to add to his list
-//find a way to limit to 10 movies choices for each list
-//send error message "you already choose 10 MOVIES"

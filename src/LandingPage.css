@@ -7,7 +7,6 @@
 
 .landingPage {
     border-top: 100px solid #3080eb;
-    /* border-bottom: 100px solid #3080eb; */
     min-height: 100vh;
 }
 
@@ -50,6 +49,7 @@
     box-shadow: 3px 5px 3px 0 grey;
     transform: translateX(0) translateY(0);
     transition: transform 0.25s ease-in-out;
+    text-transform: lowercase;
 }
 
 .startButton:active {
@@ -71,8 +71,6 @@ footer i {
 }
 
 footer a {
-    /* margin: 30px 0; */
-    /* padding: 20px 0; */
     float: left;
     text-transform: uppercase;
     text-decoration: none;
@@ -98,6 +96,7 @@ footer p {
     color: white;
     background-color: transparent;
     border: none;
+    text-transform: uppercase;
 }
 
 @media (max-width: 970px) {
@@ -108,8 +107,8 @@ footer p {
     .contentContainer p {
         font-size: 1rem;
     }
-
 }
+
 @media (max-width: 600px) {
     .homeButton i{
         font-size: 1.2rem;
@@ -133,12 +132,14 @@ footer p {
         font-size: 1rem;
     }
 }
+
 @media (max-height: 700px) and (max-width: 340px) {
     .contentContainer h1 {
         font-size: 1.7rem;
         line-height: 1.8rem;
         margin-bottom: 10px;
     }
+
     .logo {
         height: 80px;
         width: 80px;
@@ -157,18 +158,15 @@ footer p {
         font-size: 1.7rem;
         line-height: 1.8rem;
     }
+
     .logo {
         height: 60px;
         width: 60px;
         margin-bottom: 10px;
     }
-
 }
 
 @media (max-height: 600px) {
-    /* .contentContainer h1 {
-        font-size: 2rem;
-    } */
     .logo {
         height: 60px;
         width: 60px;
@@ -177,9 +175,11 @@ footer p {
     .contentContainer {
         margin-top: 5vh;
     }
+
     .contentContainer h1 {
         font-size: 1.4rem;
     }
+
     .contentContainer p {
         font-size: .9rem;
     }
@@ -193,11 +193,7 @@ footer p {
         margin: 10px 0;
     }
 
-    
-
     .landingPage {
         border-top: 30px solid #3080eb;
     }
-
-
 }

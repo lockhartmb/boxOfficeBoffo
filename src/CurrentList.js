@@ -113,9 +113,10 @@ const SortableItem = SortableElement(({ title, firebaseKey, handleDelete }) => {
 	console.log(firebaseKey);
 	return (
 		<Fragment>
-			<div id={firebaseKey} class="currentListItem noSelect">
-				<li className="listNumber"></li>
-				<h2>{title}</h2>
+			<div id={firebaseKey} className="currentListItem noSelect">
+				<li className="listNumber">
+					{title}
+				</li>
 				<button className="delete" onClick={() => handleDelete(firebaseKey)}>
 					<i className="fas fa-minus-circle delete"></i>
 				</button>

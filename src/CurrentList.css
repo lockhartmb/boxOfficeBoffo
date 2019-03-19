@@ -1,194 +1,164 @@
 /* copied from github to prevent text-highlighting in react sortable list */
- .noSelect {
- -webkit-touch-callout: none; /* iOS Safari */
-   -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-      -moz-user-select: none; /* Firefox */
-       -ms-user-select: none; /* Internet Explorer/Edge */
-           user-select: none; /* Non-prefixed version, currently
+.noSelect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
                                  supported by Chrome and Opera */
 }
+
 .currentListContainer {
-    min-height: 100vh;
-    width: 25%;
-    border-bottom: 80px solid #204470;
-    position: relative;
-    float: left;
-    background: #c0f3fb;
-    z-index: -10;
+	min-height: 100vh;
+	width: 25%;
+	border-bottom: 80px solid #204470;
+	position: relative;
+	float: left;
+	background: #c0f3fb;
+	z-index: -10;
 }
 
 .currentList {
-    margin: 0 auto;
-    height: 55%;
-    width: 80%;
-    position: absolute;
-    top: 0; 
-    right: 0; 
-    left: 0;
-    bottom: 0;
-    overflow: scroll;
-    z-index: -1;
-    transform: translateY(60%);
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(115, 181, 201, .2));
-    border-radius: 20px;
-    /* border: 1px solid yellow; */
+	margin: 0 auto;
+	height: 55%;
+	width: 80%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	overflow: scroll;
+	z-index: -1;
+	transform: translateY(60%);
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(115, 181, 201, 0.2));
+	border-radius: 20px;
 }
 
 .currentListItem {
-    /* border: 1px solid red; */
-    margin: 5% 0;
-    height: 55px;
-    position: relative;
-    border-radius: 30px;
-    background: white;
-    list-style: none;
+	height: 55px;
+	position: relative;
+	border-radius: 30px;
+	background: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	padding: 0 10px 0 20px;
 }
 
 .listNumber {
-    list-style: decimal;
-    position: absolute;
-    left: 10%;
-    top: 30%;
-    font-size: .7rem;
+	list-style: decimal inside;
+	text-align: left;
+	font-size: 0.7rem;
+	flex: 1;
+	padding-right: 10px;
 }
 
 .currentListItem:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .delete {
-    margin: 0 auto;
-    width: 35px;
-    height: 35px;
-    float: right;
-    font-size: .7rem;
-    border-radius: 30px;
-    position: absolute;
-    top: 15%;
-    right: 5%;
-    bottom: 0;
-    box-shadow: 0;
-    border: 0;
-    color: rgb(230, 75, 75);
-    font-size: 1.5rem;
-    cursor: pointer;
-    background: none;
-    /* border: 1px solid red; */
+	width: 35px;
+	height: 35px;
+	font-size: 0.7rem;
+	border-radius: 30px;
+	box-shadow: 0;
+	border: 0;
+	color: rgb(230, 75, 75);
+	font-size: 1.5rem;
+	cursor: pointer;
+	background: none;
 }
-
-h2 {
-    width: 75%;
-    height: 50%;
-    padding-left: 10%;
-    font-family: 'Lato', sans-serif;
-    font-size: .7rem;
-    float: left;
-    text-align: left;
-    position: absolute;
-    top: 30%;
-    left: 0;
-    bottom: 0;
-    display: inline-block; 
-}
-
-/* .currentListTitle { */
-    /* font-family: 'Lato', sans-serif; */
-    /* font-weight: bold;
-    color: #204470;
-    background: #c0f3fb;
-    word-spacing: 5px;
-    font-size: .8rem;
-    padding: 2% 0;
-    margin: 100px 0;
-    text-transform: uppercase; */
-/* } */
 
 .btnContainer {
-    width: 60%;
-    /* border: 1px solid red; */
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 3%;
-    margin: 0 auto;
+	width: 60%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 3%;
+	margin: 0 auto;
 }
 
 .btnHidden {
-    margin: 0 auto;
-    width: 80%;
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .2s ease;
+	margin: 0 auto;
+	width: 80%;
+	position: absolute;
+	bottom: 5%;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.2s ease;
 }
 
 .btnContainer {
-    margin: 0 auto;
-    width: 80%;
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    right: 0;
-    opacity: 1;
-    transition: all .5s ease;
+	margin: 0 auto;
+	width: 80%;
+	position: absolute;
+	bottom: 5%;
+	left: 0;
+	right: 0;
+	opacity: 1;
+	transition: all 0.5s ease;
 }
 
 .btn {
-    width: 40%;
-    height: 30px;
-    font-size: .5rem;
-    color: white;
-    border-radius: 25px;
-    border: none;
-    box-shadow: rgb(61, 61, 61) 1px 1px 5px;
+	width: 40%;
+	height: 30px;
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	color: white;
+	border-radius: 25px;
+	border: none;
+	box-shadow: rgb(61, 61, 61) 1px 1px 5px;
 }
+
 .reset {
-    background: black;
-    float: left;
-    transition: background .5s ease;
+	background: black;
+	float: left;
+	transition: background 0.5s ease;
 }
 
 .reset:hover {
-    background: rgb(70, 70, 70);
+	background: rgb(70, 70, 70);
 }
 
 .confirm {
-    background: #2a63f2;
-    float: center;
-    transition: background .5s ease;
+	background: #2a63f2;
+	float: center;
+	transition: background 0.5s ease;
 }
 
 .confirm:hover {
-    background: #1548b6;
+	background: #1548b6;
 }
 
 .hide {
-    display: none;
-    border: 1px solid red;
+	display: none;
+	border: 1px solid red;
 }
 
 .show {
-    display: block;
+	display: block;
 }
 
 @media (max-width: 1264px) {
-    .currentListContainer {
-        width: 35%;
-    }
+	.currentListContainer {
+		width: 35%;
+	}
 }
 
 @media (max-width: 800px) {
-   .currentListContainer {
-        width: 50%;
-    }
+	.currentListContainer {
+		width: 50%;
+	}
 }
 
 @media (max-width: 650px) {
-    .currentListContainer {
-        width: 100%;
-    }
+	.currentListContainer {
+		width: 100%;
+	}
 }

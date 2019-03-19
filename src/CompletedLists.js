@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import firebase from './firebase';
 import "./Global.css";
 import "./CompletedLists.css";
@@ -27,9 +27,8 @@ class CompletedLists extends Component {
             // making an empty array to store all of our Firebase info in, because it originally comes back to us as an object
             const newStateAllTheMovieInfo = [];
 
-            //     // for each node in the firebase object, we want to get the userName and that user's list and save them as variables
+            // for each node in the firebase object, we want to get the userName and that user's list and save them as variables
             for (let key in dataFromFirebase) {
-                let keys = dataFromFirebase[key];
                 let userName = dataFromFirebase[key].userName;
                 let userList = dataFromFirebase[key].list;
 
@@ -68,7 +67,6 @@ class CompletedLists extends Component {
                     swal("Your list is safe!");
                 }
             });
-        // console.log(dbRef);
     }
 
     openModalHandler = () => {
@@ -102,11 +100,10 @@ class CompletedLists extends Component {
                 </div>
                 <h2 className="completedListsTitle">Compare your Predictions!</h2>
                 {/* ul of alllll the lists */}
-                <ul className="clearfix" className="userLists">
+                <ul className="clearfix userLists">
                     {
                         // for each user, print the userName as a title
                         this.state.newStateAllTheMovieInfo.map((user, index) => {
-                            // console.log(user.keys);
                             return (
                                 <li key={index} id={user.key} className="listBox">
                                     <h3 className="listName">{user.userName}</h3>
@@ -129,17 +126,17 @@ class CompletedLists extends Component {
 
                 <footer className="landingFooter clearfix">
                     <Link to="/" className="homeButton">
-                        <i class="fas fa-home"></i>
+                        <i className="fas fa-home"></i>
                         <p>Home</p>
                         <span className="visuallyHidden">Home Icon</span>
                     </Link>
                     <Link to="/completedLists" className="allListsButton homeButton">
-                        <i class="fas fa-list-ul"></i>
+                        <i className="fas fa-list-ul"></i>
                         <p>Completed Lists</p>
                         <span className="visuallyHidden">Completed Lists</span>
                     </Link>
                     <button className="helpButton homeButton" onClick={this.openModalHandler}>
-                        <i class="fas fa-question"></i>
+                        <i className="fas fa-question"></i>
                         <p>Help</p>
                         <span className="visuallyHidden">More info</span>
                     </button>

@@ -31,9 +31,7 @@ class App extends Component {
         duplicateError: '',
         class: 'hide'
       })
-    }
-
-    if (this.state.userName !== '') {
+    } else if (this.state.userName !== '') {
       const dbRef = firebase.database().ref('LockedLists');
 
       dbRef.once('value').then(response => {
@@ -70,7 +68,7 @@ class App extends Component {
         <div className="App">
           {/* URL path to go to the landing page. This route is also sending the handleChange method and the userName state to the LandingPage component*/}
           <Route exact path='/' render={() => {
-            return <LandingPage handleChange={this.handleChange} class={this.state.class} nothingError={this.state.nothingError} duplicateError={this.state.duplicateError} userName={this.state.userName} />
+            return <LandingPage handleChange={this.handleChange} className={this.state.class} nothingError={this.state.nothingError} duplicateError={this.state.duplicateError} userName={this.state.userName} />
           }
           } />
           {/* URL path to go to the game page. This route is also sending the userName state to the GamePage component*/}
@@ -79,7 +77,6 @@ class App extends Component {
           }
           } />
           <Route path='/completedlists' component={CompletedLists} />
-          {/* <Route path='/help' component={HelpModal} /> */}
         </div>
       </Router>
 
@@ -88,9 +85,3 @@ class App extends Component {
 }
 
 export default App;
-// render(<SortableComponent />, document.getElementById('root'));
-
-
-
-
-

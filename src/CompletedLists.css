@@ -1,213 +1,188 @@
 .userLists {
-    height: inherit;
-    overflow: scroll;
-    height: 70%;
-    width: 90%;
-    margin: 0 auto;
-    list-style: none;
+	height: inherit;
+	overflow: scroll;
+	height: 70%;
+	width: 90%;
+	margin: 0 auto;
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .completedListsTitle {
-    display: block;
-    position: static;
-    float: none;
-    text-align: center;
-    font-size: 4rem;
-    height: initial;
-    width: initial;
-    padding: 40px 0;
-    text-transform: uppercase;
-    font-family: 'Judson', serif;
+	position: static;
+	text-align: center;
+	font-size: 4rem;
+	padding: 20px 0;
+	text-transform: uppercase;
+	font-family: "Judson", serif;
 }
 
 .olContainer {
-    margin: 10px auto;
-    width: 90%;
-    /* min-height: 200px; */
-    height: 500px;
-    overflow: scroll;
-    border-radius: 30px;
+	margin: 10px auto;
+	width: 90%;
+	border-radius: 30px;
+	flex: 1;
 }
 
 .listBox {
-    /* border: 2px solid black; */
-    height: initial;
-    border-radius: 25px;
-    width: calc((100% / 4) - 5%);
-    float: left;
-    margin: 2.5% 2.5%;
-    border-top: 50px solid #204470;
-    border-bottom: 50px solid #204470;
-    background: #c0f3fb;
-
-}
-
-.listBox button{
-    margin: 2% 0;
-    border-radius: 30px;
-    width: 160px;
-    height: 45px;
-    color: #204470;
-    border-style: none;
+	height: auto;
+	border-radius: 25px;
+	width: calc((100% / 4) - 5%);
+	margin: 2.5% 2.5%;
+	border-top: 50px solid #204470;
+	border-bottom: 50px solid #204470;
+	background: #c0f3fb;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .moviesList {
-    list-style: decimal;
-    font-family: 'Lato', sans-serif;
-    border-radius: 30px;
-    background: white;
-    margin: 2% 2%;
-    /* color: crimson; */
-    font-size: 1.2rem;
-    text-align: left;
-    list-style-position: inside;
-    padding: 3% 0 3% 5%;
-    font-weight: bold;
-    /* border: 1px solid red; */
-    
+	list-style: decimal;
+	font-family: "Lato", sans-serif;
+	border-radius: 30px;
+	background: white;
+	margin: 2% 2%;
+	font-size: 1.2rem;
+	text-align: left;
+	list-style-position: inside;
+	padding: 3% 0 3% 5%;
+	font-weight: bold;
 }
 
 .moviesList span {
-    color: black;
-    font-size: .7rem;
+	color: black;
+	font-size: 0.7rem;
 }
 
 .listName {
-    font-family: 'Lato', sans-serif;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    padding: 6% 0 6%;
-    font-weight: bold;
-    /* background: white; */
+	font-family: "Lato", sans-serif;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+	padding: 6% 0 6%;
+	font-weight: bold;
 }
 
 .completedLists {
-    border-top: 80px solid #3080eb;
-    height: 100vh;
-    width: 100%;
-    float: left;
+	border-top: 80px solid #3080eb;
+	height: 100vh;
+	width: 100%;
 }
 
 .listsFooter {
-    position: fixed;
-    width: 100%;
-    height: 80px;
-    font-size: 2rem;
-    background-color: #3080eb;
-    text-align: center;
+	position: fixed;
+	width: 100%;
+	height: 80px;
+	font-size: 2rem;
+	background-color: #3080eb;
+	text-align: center;
 }
 
 .deleteList {
-    width: 35px;
-    height: 35px;
-    font-size: .7rem;
-    background: white;
+	background: white;
+	margin: 8px 0;
+	border-radius: 30px;
+	width: 70px;
+	height: 30px;
+	font-size: 0.7rem;
+	color: #204470;
+	border-style: none;
+	text-transform: uppercase;
 }
 
 @media (max-width: 1850px) {
-    .moviesList {
-        font-size: 1.3rem;
-    }
-    .moviesList span {
-        font-size: 0.85rem;
-    }
+	.moviesList {
+		font-size: 1.3rem;
+	}
+
+	.moviesList span {
+		font-size: 0.85rem;
+	}
 }
 
 @media (max-width: 1800px) {
-   .listBox {
-       width: calc((100% / 3) - 3%);
-    } 
+	.listBox {
+		width: calc((100% / 3) - 3%);
+	}
 }
 
-
 @media (max-width: 1600px) {
-    .moviesList {
-        font-size: 1rem;
-        padding: 2% 5%;
-        margin-bottom: 5%;
-    }
-    .listBox {
-        float: left;
-        /* margin: 0 auto; */
-        width: calc((100% / 4) - 2%);
-        margin: 2.5% 1%;
-    }
-    .completedListsTitle {
-        font-size: 2rem;
-    }
-    .olContainer {
-        overflow: scroll;
-    }
+	.moviesList {
+		font-size: 1rem;
+		padding: 2% 5%;
+		margin-bottom: 5%;
+	}
+
+	.listBox {
+		width: calc((100% / 4) - 2%);
+		margin: 2.5% 1%;
+	}
+
+	.completedListsTitle {
+		font-size: 2rem;
+	}
 }
 
 @media (max-width: 1400px) {
-    .listBox {
-        width: calc((100% / 4) - 2%);
-        /* border: 1px solid red; */
-    }
-     .moviesList {
-        font-size: .7rem;
-    }
-    .moviesList span {
-        font-size: .7rem;
-    }
-    .completedListsTitle {
-        font-size: 2rem;
-    }
+	.listBox {
+		width: calc((100% / 4) - 2%);
+	}
 
-    .olContainer {
-        height: 200px;
-        overflow: scroll;
-        border-radius: 30px;
-    }
+	.moviesList {
+		font-size: 0.7rem;
+	}
 
-   .listBox button{
-        margin: 2% 0;
-        border-radius: 30px;
-        width: 70px;
-        height: 30px;
-        font-size: .6rem;
-        color: #204470;
-        border-style: none;
-    } 
+	.moviesList span {
+		font-size: 0.7rem;
+	}
+
+	.completedListsTitle {
+		font-size: 2rem;
+	}
+
+	.olContainer {
+		border-radius: 30px;
+	}
 }
 
 @media (max-width: 1000px) {
-    .listBox {
-        width: calc((100% / 3) - 3%);
-        margin: 2.5% 1%
-        /* border: 1px solid red; */
-    }
+	.listBox {
+		width: calc((100% / 3) - 3%);
+		margin: 2.5% 1%;
+	}
 }
 
 @media (max-width: 800px) {
-    .listBox {
-        width: calc((100% / 2) - 3%);
-        margin: 2.5% 1%
-        /* border: 1px solid red; */
-    }
+	.listBox {
+		width: calc((100% / 2) - 3%);
+		margin: 2.5% 1%;
+	}
 }
 
 @media (max-width: 600px) {
-    .listBox {
-        margin: 0 auto;
-        width: 80%;
-        margin: 2.5% 10%
-    }
+	.listBox {
+		margin: 0 auto;
+		width: 80%;
+		margin: 2.5% 10%;
+	}
 }
 
 @media (max-width: 500px) {
-    .userLists {
-        height: 63%;
-    }
-    .listBox {
-        margin: 0 auto;
-        width: 90%;
-        margin: 2.5% 5%
-        /* border: 1px solid red; */
-    }
-    .completedListsTitle {
-        padding: 20px;
-    }
+	.userLists {
+		height: 63%;
+	}
+
+	.listBox {
+		margin: 0 auto;
+		width: 90%;
+		margin: 2.5% 5%;
+	}
+
+	.completedListsTitle {
+		padding: 20px;
+	}
 }

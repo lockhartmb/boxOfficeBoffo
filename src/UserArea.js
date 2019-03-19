@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-// import ReactSVG from 'react-svg';
 import boffoLogo from './assets/boffoLogo.svg'
 import './UserArea.css';
 import './Global.css';
@@ -16,5 +14,4 @@ class UserArea extends Component {
     }
 }
 
-// render(<ReactSVG src="logo.svg" />, document.getElementById('root'))
 export default UserArea;

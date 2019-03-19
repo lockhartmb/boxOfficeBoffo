@@ -75,7 +75,6 @@
     background-color:#c0f3fb;
     appearance: none;
     cursor: pointer;
-    /* transition: all .5s ease; */
 }
 
 .yearDropDown option {
@@ -92,10 +91,6 @@
     background-color: #3080eb;
     text-align: center;
 }
-
-/* .gameFooter a {
-    margin: 10px 0;
-} */
 
 @media (max-width: 1264px) {
     .gamePage {
@@ -118,16 +113,18 @@
     .movieCatalogue {
         height: 75%;
     }
+
     .gamePage {
         width: 50%;
     }
+
     .gameFooter {
         width: 50%;
     }
+
     .movieCatalogueMovie {
         width: 100%;
-        height: 380px;
-        
+        height: 380px;    
     }
 }
 
@@ -135,6 +132,7 @@
     .gamePage {
         width: 100%;
     }
+
     .gameFooter {
         width: 100%;
     }

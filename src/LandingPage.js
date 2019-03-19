@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import boffoLogo from './assets/boffoLogo.svg';
-import './LandingPage.css'
-import './Global.css'
+import './LandingPage.css';
+import './Global.css';
 import Modal from './Modal.js';
 
 class LandingPage extends Component {
@@ -51,21 +51,21 @@ class LandingPage extends Component {
                     <input className="inputName" type="text" placeholder="Give your list a unique name" htmlFor="name" name="name" onChange={this.props.handleChange} value={this.props.userName} id="name" required />
                     <p>{this.props.duplicateError}</p>
                     <p>{this.props.nothingError}</p>
-                    <Link to="gamepage" className={this.props.class}>Play</Link>
+                    <Link to="gamepage" className={this.props.className}>Play</Link>
                 </div>
                 <footer className="landingFooter clearfix">
                     <Link to="/" className="homeButton">
-                        <i class="fas fa-home"></i>
+                        <i className="fas fa-home"></i>
                         <p>Home</p>
                         <span className="visuallyHidden">Home Icon</span>
                     </Link>
                     <Link to="/completedLists" className="allListsButton homeButton">
-                        <i class="fas fa-list-ul"></i>
+                        <i className="fas fa-list-ul"></i>
                         <p>Completed Lists</p>
                         <span className="visuallyHidden">Completed Lists</span>
                     </Link>
                     <button className="helpButton homeButton" onClick={this.openModalHandler}>
-                        <i class="fas fa-question"></i>
+                        <i className="fas fa-question"></i>
                         <p>Help</p>
                         <span className="visuallyHidden">More info</span>
                     </button>

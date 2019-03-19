@@ -12,7 +12,7 @@ const modal = (props) => {
                 <div className="modalHeader">
                     <h3>How to play</h3>
                     <span className="closeModalBtn" onClick={props.close}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                         <span className="visuallyHidden">Close Modal</span>
                     </span>
                 </div>
