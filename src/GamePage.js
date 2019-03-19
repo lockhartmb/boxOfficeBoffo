@@ -76,7 +76,6 @@ class GamePage extends Component {
                     'primary_release_date.lte': `${year}-09-04`,
                     region: 'US',
                     page: 1,
-                    // sort_by: 'revenue.desc',
                     sort_by: 'popularity.desc'
                 },
                 proxyHeaders: {
@@ -238,7 +237,7 @@ class GamePage extends Component {
                         </Link>
                         <button className="helpButton homeButton" onClick={this.openModalHandler}>
                             <i className="fas fa-question"></i>
-                            <span className="visuallyHidden">More info</span>
+                            <span className="visuallyHidden">How to play</span>
                         </button>
                     </footer>
 

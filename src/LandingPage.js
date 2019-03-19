@@ -66,8 +66,8 @@ class LandingPage extends Component {
                     </Link>
                     <button className="helpButton homeButton" onClick={this.openModalHandler}>
                         <i className="fas fa-question"></i>
-                        <p>Help</p>
-                        <span className="visuallyHidden">More info</span>
+                        <p>How to play</p>
+                        <span className="visuallyHidden">How to play</span>
                     </button>
 
                 </footer>

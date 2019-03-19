@@ -30,12 +30,16 @@
 
 .modalBody {
     padding: 10px 30px;
-    text-align: center;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modalBody li {
     list-style: auto inside;
     padding: 10px 0;
+    text-align: left;
 }
 
 .closeModalBtn {
