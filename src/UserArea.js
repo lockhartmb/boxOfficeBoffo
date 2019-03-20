@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import boffoLogo from './assets/boffoLogo.svg'
-import './UserArea.css';
-import './Global.css';
+import './App.css';
 
 class UserArea extends Component {
     render() {

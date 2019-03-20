@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import boffoLogo from './assets/boffoLogo.svg';
-import './LandingPage.css';
-import './Global.css';
+import './App.css';
 import Modal from './Modal.js';
 
 class LandingPage extends Component {

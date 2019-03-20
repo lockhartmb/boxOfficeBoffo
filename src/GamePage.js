@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import Qs from 'qs';
 import firebase from 'firebase';
-import './GamePage.css';
-import './Global.css';
-import './CurrentList.css';
+import './App.css';
 import CurrentList from './CurrentList.js';
 import UserArea from './UserArea.js'
 import Modal from './Modal.js';
@@ -101,31 +99,19 @@ class GamePage extends Component {
     }
 
     addCurrentMovie = async (event) => {
-
         event.preventDefault();
-
         let numberOfMovies = this.state.chosenMovies.length;
-
         const canAddMovies = numberOfMovies < 10;
-
         let duplicatedMovie = false
-
         this.state.chosenMovies.forEach((movie) => {
-
             if (event.target.value === movie.title) {
-
                 duplicatedMovie = true;
-
                 swal("You already have this movie, please choose a new one!");
-
             }
-
         })
 
         if (canAddMovies === false) {
-
             swal("You already have 10 movies, please submit your list or delete a movie!");
-
         }
 
         if (canAddMovies && duplicatedMovie === false) {
@@ -141,25 +127,16 @@ class GamePage extends Component {
             //once that state is set (await) we duplicate the chosen movie state and push the clickedMovie to the newMovieArray
             dbRef.on('value', response => {
                 const moviesFromFirebase = response.val();
-
                 const getMoviesBack = [];
-
                 for (let key in moviesFromFirebase) {
-
                     getMoviesBack.push({
-
                         key: key,
-
                         title: moviesFromFirebase[key]
-
                     });
-
                 }
-
                 this.setState({
                     chosenMovies: getMoviesBack
                 })
-
             })
         }
     }

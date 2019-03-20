@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import firebase from './firebase';
-import "./Global.css";
-import "./CompletedLists.css";
-import "./Modal.css";
+import './App.css';
 import swal from 'sweetalert';
 import Modal from './Modal.js';;
 

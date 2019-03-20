@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
-import "./CurrentList.css";
-import "./Global.css";
+import './App.css';
 import swal from 'sweetalert';
 import {
 	SortableContainer,
@@ -28,7 +27,6 @@ class CurrentList extends Component {
 
 	// need to figure out how to delete only one movie from the list ie. .child() but for now it is deleting the whole list
 	handleDelete = (key) => {
-
 		const dbRef = firebase.database().ref(this.props.userName).child(key);
 		dbRef.remove();
 	}
@@ -54,7 +52,6 @@ class CurrentList extends Component {
 			button: 'btnHidden',
 			items: []
 		})
-
 	}
 
 	//it is for checking if the previous props is different from the new props, if it is the length are different it will reset the state
