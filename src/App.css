@@ -145,7 +145,12 @@ h1 {
 	border-style: none;
 	text-transform: uppercase;
 	padding: 5px 0 0 0;
-	display: inline-block;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.deleteList:focus {
+    border: 2px dotted rgb(230, 75, 75);
 }
 
 @media (max-width: 1850px) {
@@ -311,11 +316,15 @@ h1 {
 	font-size: 0.7rem;
 	border-radius: 30px;
 	box-shadow: 0;
-	border: 0;
+	border: 2px solid transparent;
 	color: rgb(230, 75, 75);
 	font-size: 1.5rem;
 	cursor: pointer;
 	background: none;
+}
+
+.delete:focus {
+    border: 2px dotted #3080eb;
 }
 
 .btnContainer {
@@ -365,7 +374,8 @@ h1 {
 	background-color: #3080eb;
 	font-weight: bold;
 	float: center;
-	transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
 }
 
 .confirm:hover {
@@ -374,6 +384,10 @@ h1 {
 
 .confirm:active {
     transform: translateX(3px) translateY(3px);
+}
+
+.confirm:focus {
+    border: 2px dotted rgb(230, 75, 75);
 }
 
 .hide {
@@ -454,7 +468,7 @@ h1 {
 }
 
 .movieCatalogueMovie button {
-    border: none;
+    border: 2px solid transparent;
     height: 40px;
     width: 40px;
     border-radius: 30px;
@@ -469,6 +483,10 @@ h1 {
 
 .movieCatalogueMovie button:hover {
     background-color: #58728d;
+}
+
+.movieCatalogueMovie button:focus {
+    border: 2px dotted rgb(230, 75, 75);
 }
 
 .instructions {
@@ -497,6 +515,7 @@ h1 {
 .gameFooter {
     position: fixed;
     width: 75%;
+    height: 80px;
     bottom: 0;
     font-size: 1.7rem;
     background-color: #3080eb;
