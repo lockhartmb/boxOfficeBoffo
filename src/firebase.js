@@ -1,13 +1,13 @@
 import firebase from 'firebase';
 
-  var config = {
-    apiKey: "AIzaSyD1XDdPkKLLE16BSJ_nz2YMgiMDCRw0594",
-    authDomain: "auth-test-d2fa2.firebaseapp.com",
-    databaseURL: "https://auth-test-d2fa2.firebaseio.com",
-    projectId: "auth-test-d2fa2",
-    storageBucket: "auth-test-d2fa2.appspot.com",
-    messagingSenderId: "194937812413"
-  };
-  firebase.initializeApp(config);
+var config = {
+  apiKey: "AIzaSyDNvyaAye3hGZQvFxEHL1gpz-Eemxlm9fQ",
+  authDomain: "boxofficeboffo-27ce9.firebaseapp.com",
+  databaseURL: "https://boxofficeboffo-27ce9.firebaseio.com",
+  projectId: "boxofficeboffo-27ce9",
+  storageBucket: "boxofficeboffo-27ce9.appspot.com",
+  messagingSenderId: "179623309106"
+};
+firebase.initializeApp(config);
 
-  export default firebase
+export default firebase
